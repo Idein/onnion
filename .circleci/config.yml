@@ -1,0 +1,62 @@
+version: 2.1
+
+references:
+  python-versions: &python-versions ["3.8", "3.9"]
+
+commands:
+  install-python-dev-tools:
+    steps:
+      - run:
+          name: Install python dev tools and dependencies
+          command: |
+            apt-get update
+            apt-get install -y --no-install-recommends python3-pip
+  poetry-install:
+    steps:
+      # See: https://circleci.com/docs/2.0/language-python/#cache-dependencies
+      - restore_cache:
+          key: &cache-key-poetry cache-poetry-{{ .Environment.CIRCLE_JOB }}-{{ .Environment.CIRCLECI_CACHE_VERSION }}-{{ checksum "poetry.lock" }}
+      - install-python-dev-tools
+      - run:
+          name: install poetry && poetry install
+          command: |
+            curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+            echo 'export PATH=$HOME/.poetry/bin:$PATH' >> $BASH_ENV
+            source $BASH_ENV
+            poetry config virtualenvs.in-project true
+            poetry install
+      - save_cache:
+          key: *cache-key-poetry
+          paths:
+            - ".venv"
+            - "/usr/local/bin"
+            - "/usr/local/lib/python*/site-packages"
+
+jobs:
+  lint:
+    docker:
+      - image: python:3-buster
+        auth: &docker-hub-auth
+          username: $DOCKER_USER
+          password: $DOCKER_PASS
+    steps:
+      - checkout
+      - poetry-install
+      - run:
+          name: Lint onnion
+          working_directory: compiler
+          command: |
+            poetry run pysen run lint
+      - run:
+          name: Lint onnion-rt
+          working_directory: runtime
+          command: |
+            poetry run pysen run lint
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - lint:
+          context:
+            - docker-hub-creds
