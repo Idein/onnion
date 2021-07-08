@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "onnion"
+version = "0.1.0"
+description = "onnx compiler"
+authors = ["Idein Inc."]
+license = "Apache-2.0"
+readme = "README.md"
+keywords = ["onnx"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+onnx = "^1.9.0"
+numpy = "^1.21.0"
+
+[tool.poetry.dev-dependencies]
+pysen = {version = "^0.9.1", extras = ["lint"]}
+
+[tool.poetry.scripts]
+onnion = "onnion.main:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pysen]
+version = "0.9"
+
+[tool.pysen.lint]
+enable_black = true
+enable_flake8 = true
+enable_isort = true
+enable_mypy = true
+mypy_preset = "strict"
+line_length = 128
+py_version = "py38"
+
+[[tool.pysen.lint.mypy_targets]]
+  paths = ["."]

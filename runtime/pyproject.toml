@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "onnion-rt"
+version = "0.1.0"
+description = "run onnx with only numpy"
+authors = ["Idein Inc."]
+license = "Apache-2.0"
+readme = "README.md"
+keywords = ["onnx"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+numpy = "^1.21.0"
+
+[tool.poetry.dev-dependencies]
+pysen = {version = "^0.9.1", extras = ["lint"]}
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pysen]
+version = "0.9"
+
+[tool.pysen.lint]
+enable_black = true
+enable_flake8 = true
+enable_isort = true
+enable_mypy = true
+mypy_preset = "strict"
+line_length = 128
+py_version = "py38"
+
+[[tool.pysen.lint.mypy_targets]]
+  paths = ["."]
