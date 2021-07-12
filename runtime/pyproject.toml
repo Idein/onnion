@@ -9,7 +9,7 @@ keywords = ["onnx"]
 
 [tool.poetry.dependencies]
 python = "^3.6"
-numpy = "^1.21.0"
+numpy = "^1.19.0"
 
 [tool.poetry.dev-dependencies]
 pysen = {version = "^0.9.1", extras = ["lint"]}
