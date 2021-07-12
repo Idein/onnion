@@ -1,7 +1,7 @@
 version: 2.1
 
 references:
-  python-versions: &python-versions ["3.8", "3.9"]
+  python-versions: &python-versions ["3.6", "3.7", "3.8", "3.9"]
 
 commands:
   install-python-dev-tools:
@@ -62,6 +62,20 @@ jobs:
           working_directory: runtime
           command: |
             poetry run pysen run lint
+  test:
+    parameters:
+      python-version:
+        type: string
+    docker:
+      - image: python:<<parameters.python-version>>-buster
+        auth: *docker-hub-auth
+    steps:
+      - checkout
+      - poetry-install
+      - run:
+          name: Test onnion-rt
+          working_directory: runtime
+          command: poetry run pytest -v
 
 workflows:
   version: 2
@@ -70,3 +84,9 @@ workflows:
       - lint:
           context:
             - docker-hub-creds
+      - test:
+          context:
+            - docker-hub-creds
+          matrix:
+            parameters:
+              python-version: *python-versions
