@@ -12,10 +12,10 @@ commands:
             apt-get update
             apt-get install -y --no-install-recommends python3-pip
   poetry-install:
+    parameters:
+      dir:
+        type: string
     steps:
-      # See: https://circleci.com/docs/2.0/language-python/#cache-dependencies
-      - restore_cache:
-          key: &cache-key-poetry cache-poetry-{{ .Environment.CIRCLE_JOB }}-{{ .Environment.CIRCLECI_CACHE_VERSION }}-{{ checksum "compiler/poetry.lock" }}-{{ checksum "runtime/poetry.lock" }}
       - install-python-dev-tools
       - run:
           name: install poetry
@@ -25,22 +25,10 @@ commands:
             source $BASH_ENV
             poetry config virtualenvs.in-project true
       - run:
-          name: poetry install in compiler
-          working_directory: compiler
+          name: poetry install in << parameters.dir >>
+          working_directory: << parameters.dir >>
           command: |
             poetry install
-      - run:
-          name: poetry install in runtime
-          working_directory: runtime
-          command: |
-            poetry install
-      - save_cache:
-          key: *cache-key-poetry
-          paths:
-            - "compiler/.venv"
-            - "runtime/.venv"
-            - "/usr/local/bin"
-            - "/usr/local/lib/python*/site-packages"
 
 jobs:
   lint:
@@ -51,7 +39,10 @@ jobs:
           password: $DOCKER_PASS
     steps:
       - checkout
-      - poetry-install
+      - poetry-install:
+          dir: compiler
+      - poetry-install:
+          dir: runtime
       - run:
           name: Lint onnion
           working_directory: compiler
@@ -71,7 +62,8 @@ jobs:
         auth: *docker-hub-auth
     steps:
       - checkout
-      - poetry-install
+      - poetry-install:
+          dir: runtime
       - run:
           name: Test onnion-rt
           working_directory: runtime
