@@ -13,6 +13,9 @@ numpy = "^1.19.0"
 
 [tool.poetry.dev-dependencies]
 pysen = {version = "^0.9.1", extras = ["lint"]}
+pytest = "^6.2.4"
+onnx = "^1.9.0"
+onnxruntime = "^1.8.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
