@@ -22,4 +22,3 @@ def test_div_01():
     inputs = [v0, v1]
     outputs = Div(opset_version).run(v0, v1)
     check("Div", dict(), inputs, outputs, opset_version)
-

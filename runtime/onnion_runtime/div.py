@@ -13,4 +13,3 @@ class Div:
             return [x / y]
         else:
             raise RunError("Div", self.version)
-
