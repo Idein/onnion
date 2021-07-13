@@ -26,5 +26,7 @@ $ poetry install
 ## Supported Operators
 This runtime supports only below operators.
 
+- Add
+  - must be from opsetversion >= 7
 - Concat
 - Exp
