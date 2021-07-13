@@ -17,4 +17,5 @@ $ poetry install
 ## Supported Operators
 This runtime supports only below operators.
 
+- Concat
 - Exp
