@@ -34,5 +34,6 @@ This runtime supports only below operators.
 - Exp
 - Mul
   - must be from opsetversion >= 7
+- Slice
 - Sub
   - must be from opsetversion >= 7
