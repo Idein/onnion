@@ -30,5 +30,7 @@ This runtime supports only below operators.
   - must be from opsetversion >= 7
 - Concat
 - Exp
+- Mul
+  - must be from opsetversion >= 7
 - Sub
   - must be from opsetversion >= 7
