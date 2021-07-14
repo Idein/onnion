@@ -6,6 +6,9 @@ authors = ["Idein Inc."]
 license = "Apache-2.0"
 readme = "README.md"
 keywords = ["onnx"]
+packages = [
+  { include = "onnion_runtime" }
+]
 
 [tool.poetry.dependencies]
 python = "^3.6"
