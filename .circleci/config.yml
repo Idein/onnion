@@ -135,8 +135,7 @@ workflows:
   release-onnion:
     jobs:
       - validate-version-with-tag:
-          parameters:
-            dir: compiler
+          dir: compiler
           context:
             - docker-hub-creds
           filters: &release-filter
@@ -154,8 +153,7 @@ workflows:
   release-onnion-rt:
     jobs:
       - validate-version-with-tag:
-          parameters:
-            dir: runtime
+          dir: runtime
           context:
             - docker-hub-creds
           filters: &release-filter
