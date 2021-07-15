@@ -6,6 +6,7 @@ authors = ["Idein Inc."]
 license = "Apache-2.0"
 readme = "README.md"
 keywords = ["onnx"]
+repository = "https://github.com/Idein/onnion/tree/master/runtime"
 packages = [
   { include = "onnion_runtime" }
 ]
