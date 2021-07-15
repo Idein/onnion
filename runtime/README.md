@@ -8,6 +8,9 @@ Note: This software includes [the work](https://github.com/onnx/onnx) that is di
 $ pip3 install onnion-rt
 ```
 
+## Usage
+See [tutorial](https://github.com/Idein/onnion/tree/master#tutorial).
+
 ## Development Guide
 
 ```
