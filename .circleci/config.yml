@@ -73,6 +73,8 @@ jobs:
     parameters:
       dir:
         type: string
+      package-name:
+        type: string
     docker:
       - image: python:3-buster
         auth: *docker-hub-auth
@@ -84,8 +86,8 @@ jobs:
           name: Check if git tag name is appropriate for package version
           working_directory: << parameters.dir >>
           command: |
-            TAG=$(echo ${CIRCLE_TAG} |sed -e 's/<< parameters.dir >>-//')
-            VERSION=$(poetry run python -c 'import pkg_resources; print(pkg_resources.get_distribution("<< parameters.dir >>").version)')
+            TAG=$(echo ${CIRCLE_TAG} |sed -e 's/<< parameters.package-name >>-//')
+            VERSION=$(poetry run python -c 'import pkg_resources; print(pkg_resources.get_distribution("<< parameters.package-name >>").version)')
             echo "Git tag: $TAG"
             echo "Package version: $VERSION"
             test "$VERSION" = "$TAG"
@@ -136,6 +138,7 @@ workflows:
     jobs:
       - validate-version-with-tag:
           dir: compiler
+          package-name: onnion
           context:
             - docker-hub-creds
           filters: &release-filter
@@ -154,6 +157,7 @@ workflows:
     jobs:
       - validate-version-with-tag:
           dir: runtime
+          package-name: onnion-rt
           context:
             - docker-hub-creds
           filters: &release-filter
