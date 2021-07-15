@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "onnion"
-version = "0.1.0"
+version = "0.1.0a2"
 description = "onnx compiler"
 authors = ["Idein Inc."]
 license = "Apache-2.0"
