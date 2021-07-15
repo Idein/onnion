@@ -180,7 +180,7 @@ def main() -> None:
         "-o", "--output", dest="output_path", required=False, default="model.py", help="Output python code path"
     )
     parser.add_argument(
-        "--export-tensor-size", dest="export_tensor_size", required=False, type=int, help="Output python code path"
+        "--export-tensor-size", dest="export_tensor_size", required=False, type=int, help="Export tensors to an npy file if the size of tensors is larger than the option value"
     )
     args = parser.parse_args()
     onnion(args.input_path, output_path=args.output_path, export_tensor_size=args.export_tensor_size)
