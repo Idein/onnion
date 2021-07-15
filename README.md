@@ -41,7 +41,7 @@ pass
 ```
 
 <details>
-<summary> `check_model.py` </summary>
+<summary>check_model.py</summary>
 
 ```py
 import onnxruntime
