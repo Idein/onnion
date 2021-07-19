@@ -37,6 +37,7 @@ This runtime supports only below operators.
 - Div
   - must be from opsetversion >= 7
 - Exp
+- Gather
 - Mul
   - must be from opsetversion >= 7
 - Slice
