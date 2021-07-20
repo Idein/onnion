@@ -11,7 +11,7 @@ class Reshape:
         self.shape = kwargs.get("shape")
 
     def run(self, data, shape=None):
-        if self.shape is None:
+        if self.version >= 5:
             self.shape = shape
 
         if self.shape is None:
