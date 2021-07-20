@@ -7,5 +7,6 @@ from .exp import Exp  # noqa: F401
 from .gather import Gather  # noqa: F401
 from .mul import Mul  # noqa: F401
 from .reducemin import ReduceMin  # noqa: F401
+from .reshape import Reshape  # noqa: F401
 from .slice import Slice  # noqa: F401
 from .sub import Sub  # noqa: F401

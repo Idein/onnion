@@ -41,6 +41,7 @@ This runtime supports only below operators.
 - Mul
   - must be from opsetversion >= 7
 - ReduceMin
+- Reshape
 - Slice
 - Sub
   - must be from opsetversion >= 7
