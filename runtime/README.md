@@ -20,6 +20,14 @@ $ poetry install
 ### How to support new operators
 
 1. Add `onnion_runtime/xxx.py`
+  - An onnx operator `Xxx` must correspond to a class `Xxx`.
+  - A class `Xxx` must implement `__init__` and `run` methods.
+  - The parameters of the `__init__` methods must be `self`, `opset_version`, and `kwargs`.
+  - The attributes of the operator must be passed through the `kwargs` of the `__init__` method.
+    - Get the required attributes by `kwargs['attr_name']`.
+    - Get the optional attributes by `kwargs.get('attr_name', default_value)`.
+  - The inputs of the operator must be passed through the arguments of the `run` method.
+  - The `run` method must return the list of `np.array`.
 2. Add `from .xxx import Xxx # noqa: F401` to `onnion_runtime/__init__.py`
 3. Update "Supported Operators" in `README.md`
 4. Add `tests/test_xxx.py`
