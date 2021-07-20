@@ -40,6 +40,7 @@ This runtime supports only below operators.
 - Gather
 - Mul
   - must be from opsetversion >= 7
+- ReduceMin
 - Slice
 - Sub
   - must be from opsetversion >= 7
