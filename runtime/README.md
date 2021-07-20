@@ -55,3 +55,4 @@ This runtime supports only below operators.
 - Squeeze
 - Sub
   - must be from opsetversion >= 7
+- TopK
