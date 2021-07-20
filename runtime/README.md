@@ -52,5 +52,6 @@ This runtime supports only below operators.
 - Reshape
 - Shape
 - Slice
+- Squeeze
 - Sub
   - must be from opsetversion >= 7
