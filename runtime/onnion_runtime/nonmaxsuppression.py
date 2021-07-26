@@ -26,11 +26,11 @@ class NonMaxSuppression:
             for cls in range(num_classes):
                 scores_per_batch_per_class = scores[batch, cls, :]
                 scores_per_batch_per_class = scores_per_batch_per_class[scores_per_batch_per_class > score_threshold]
-                indecies = np.argsort(-scores_per_batch_per_class)  # to pass test_nonmaxsuppression_02
+                indices = np.argsort(-scores_per_batch_per_class)  # to pass test_nonmaxsuppression_02
 
                 selected_indices_per_class = list()
-                while len(indecies) > 0 and len(selected_indices_per_class) < max_output_boxes_per_class:
-                    idx0 = indecies[0]
+                while len(indices) > 0 and len(selected_indices_per_class) < max_output_boxes_per_class:
+                    idx0 = indices[0]
 
                     selected = True
                     for idx in selected_indices_per_class:
@@ -42,7 +42,7 @@ class NonMaxSuppression:
                         selected_indices_per_class.append(idx0)
                         selected_indices.append([batch, cls, idx0])
 
-                    indecies = indecies[1:]
+                    indices = indices[1:]
 
         return [np.array(selected_indices).astype(np.int64)]
 
