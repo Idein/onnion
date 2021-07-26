@@ -9,8 +9,8 @@ ssd-10-post.onnx: ssd-10.onnx
 ssd_post.py: ssd-10-post.onnx
 	onnion $^ -o $@ --export-tensor-size 30
 
-check: ssd_post.py ssd-10-post.onnx
-	python check_model.py
+check: ssd-10-post.onnx ssd_post.py
+	python ../check_model.py ssd $^
 
 clean:
 	rm -rf ssd-10.onnx ssd-10-post.onnx *.npy ssd_post.py
