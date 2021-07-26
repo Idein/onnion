@@ -10,7 +10,7 @@ ultraface_post.py: ultraface-post.onnx
 	onnion $^ -o $@ --export-tensor-size 30
 
 check: ultraface-post.onnx ultraface_post.py
-	python check_model.py
+	python ../check_model.py ultraface $^
 
 clean:
 	rm -rf *.onnx *.npy ultraface_post.py
