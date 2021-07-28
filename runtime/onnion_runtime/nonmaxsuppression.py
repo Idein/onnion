@@ -14,10 +14,6 @@ class NonMaxSuppression:
         self, boxes, scores, max_output_boxes_per_class=ZERO_INT64, iou_threshold=ZERO_FLOAT32, score_threshold=ZERO_FLOAT32
     ):
 
-        max_output_boxes_per_class = max_output_boxes_per_class.item()
-        iou_threshold = iou_threshold.item()
-        score_threshold = score_threshold.item()
-
         num_batches, num_classes, _ = scores.shape
         selected_indices = list()
 
@@ -25,14 +21,14 @@ class NonMaxSuppression:
             boxes_per_batch = boxes[batch, :, :]
             for cls in range(num_classes):
                 scores_per_batch_per_class = scores[batch, cls, :]
-                scores_per_batch_per_class = scores_per_batch_per_class[scores_per_batch_per_class > score_threshold]
-                indices = np.argsort(-scores_per_batch_per_class)  # to pass test_nonmaxsuppression_02
+                indices = np.argsort(-scores_per_batch_per_class, kind="stable")  # to pass test_nonmaxsuppression_02
 
                 selected_indices_per_class = list()
                 while len(indices) > 0 and len(selected_indices_per_class) < max_output_boxes_per_class:
                     idx0 = indices[0]
+                    indices = indices[1:]
 
-                    selected = True
+                    selected = scores_per_batch_per_class[idx0] > score_threshold
                     for idx in selected_indices_per_class:
                         if suppress_by_iou(boxes_per_batch, idx0, idx, self.center_point_box, iou_threshold):
                             selected = False
@@ -41,8 +37,6 @@ class NonMaxSuppression:
                     if selected:
                         selected_indices_per_class.append(idx0)
                         selected_indices.append([batch, cls, idx0])
-
-                    indices = indices[1:]
 
         return [np.array(selected_indices).astype(np.int64)]
 

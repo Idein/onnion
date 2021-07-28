@@ -231,3 +231,19 @@ def test_nonmaxsuppression_08():
     inputs = [boxes, scores, max_output_boxes_per_class, iou_threshold, score_threshold]
     outputs = NonMaxSuppression(opset_version).run(boxes, scores, max_output_boxes_per_class, iou_threshold, score_threshold)
     check("NonMaxSuppression", dict(), inputs, outputs, opset_version)
+
+
+def test_nonmaxsuppression_09():
+    opset_version = 10
+
+    num_box = 50
+    np.random.seed(0)
+    boxes = np.random.randn(1, num_box, 4).astype(np.float32)
+    scores = np.random.randn(1, 80, num_box).astype(np.float32)
+    max_output_boxes_per_class = np.array([200]).astype(np.int64)
+    iou_threshold = np.array([0.5]).astype(np.float32)
+    score_threshold = np.array([0.05000000074505806]).astype(np.float32)
+
+    inputs = [boxes, scores, max_output_boxes_per_class, iou_threshold, score_threshold]
+    outputs = NonMaxSuppression(opset_version).run(boxes, scores, max_output_boxes_per_class, iou_threshold, score_threshold)
+    check("NonMaxSuppression", dict(), inputs, outputs, opset_version)
