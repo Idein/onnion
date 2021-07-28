@@ -1,0 +1,5 @@
+venv/
+*.onnx
+*.npy
+*.py
+!check_model.py

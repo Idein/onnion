@@ -64,6 +64,8 @@ if __name__ == "__main__":
 ```
 </details>
 
+See also [examples](./examples).
+
 ## Development Guide
 See each subdirectory:
 
