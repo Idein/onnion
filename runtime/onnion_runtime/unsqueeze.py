@@ -15,7 +15,7 @@ class Unsqueeze:
         if self.axes is None:
             raise RunError("Unsqueeze", self.version)
 
-        result = data
+        result = data.copy()
         for a in sorted(self.axes):
             result = np.expand_dims(result, axis=a)
 
