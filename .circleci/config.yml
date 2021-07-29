@@ -69,6 +69,27 @@ jobs:
           working_directory: runtime
           command: poetry run pytest -v
 
+  test-by-examples:
+    docker:
+      - image: python:3-buster
+        auth: &docker-hub-auth
+          username: $DOCKER_USER
+          password: $DOCKER_PASS
+    steps:
+      - checkout
+      - poetry-install:
+          dir: examples
+      - run:
+          name: check ultraface
+          working_directory: examples
+          command: |
+            poetry run make -C ultraface check
+      - run:
+          name: check ssd
+          working_directory: examples
+          command: |
+            poetry run make -C ssd check
+
   validate-version-with-tag:
     parameters:
       dir:
@@ -133,6 +154,9 @@ workflows:
           matrix:
             parameters:
               python-version: *python-versions
+      - test-by-examples:
+          context:
+            - docker-hub-creds
 
   release-onnion:
     jobs:
