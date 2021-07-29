@@ -2,4 +2,5 @@ venv/
 *.onnx
 *.npy
 *.py
+poetry.lock
 !check_model.py
