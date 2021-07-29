@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "onnion-examples"
+version = "0.1.0"
+description = ""
+authors = ["Idein Inc."]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+onnigiri = "^0.1.1"
+onnion = {path = "../compiler", develop = true}
+onnion-rt = {path = "../runtime", develop = true}
+onnx2json = "^1.0.0"
+json2onnx = "^1.0.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
