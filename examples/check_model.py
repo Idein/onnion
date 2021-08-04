@@ -37,7 +37,7 @@ if __name__ == "__main__":
         print("check 0")
         assert np.all(abs(a-b) < 1e-4)
 
-    for a,b in zip(expeced, outputs0):
+    for a,b in zip(expeced, outputs1):
         print("check 1")
         assert np.all(abs(a-b) < 1e-4)
 
