@@ -21,6 +21,10 @@ class NameTable:
             self.tbl[key] = f"{self.prefix}{len(self.tbl)}"
         return self.tbl[key]
 
+    def debug_info(self) -> str:
+        info = "\n".join([f"    {k} -> {self.tbl[k]}" for k in self.tbl])
+        return info
+
 
 def embed_ndarray(arr: npt.NDArray[Any]) -> str:
     return f"np.array({arr.tolist()}, dtype=np.{arr.dtype}).reshape({arr.shape})"
@@ -108,7 +112,7 @@ def gen_run_body(
                 assert f"Error: Not support the node {n}"
         args = ", ".join(op_args)
 
-        graph_body.append(f"[{output_names}] = {n.op_type}({args}).run({input_names})")
+        graph_body.append(f"[{output_names}] = {n.op_type}({args}).run({input_names}) # {n.name}")
     return "\n        ".join(graph_body)
 
 
@@ -133,11 +137,16 @@ def graph2pyclass(
         init_code = gen_init_with_npy(initializer, sub_graphs, graph_name_table, graph_name, export_tensor_size)
 
     graph_body = gen_run_body(opset_version, graph, initializer, graph_name_table, value_name_table)
+    value_name_table_info = value_name_table.debug_info()
 
     code = f"""
 {sub_graph_code}
 
 class {graph_name}:
+    '''
+    Value name table: origin_name -> identifier
+{value_name_table_info}
+    '''
     def __init__(self):
         {init_code}
 
