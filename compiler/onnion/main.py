@@ -155,7 +155,11 @@ def generate_code(model: onnx.ModelProto, export_tensor_size: Optional[int]) -> 
 import numpy as np
 from onnion_runtime import *
 
-{main_graph}"""
+{main_graph}
+
+def init_graph():
+    return Graph0()
+"""
     return code
 
 
