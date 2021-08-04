@@ -29,10 +29,16 @@ if __name__ == "__main__":
     expeced = sess.run(output_names, inputs)
 
     onnion = import_module(f'.{module}', package=target_dir)
-    outputs = onnion.Graph0().run(*input_values)
+    graph = onnion.init_graph()
+    outputs0 = graph.run(*input_values)
+    outputs1 = graph.run(*input_values)
 
-    for a,b in zip(expeced, outputs):
-        print("check")
+    for a,b in zip(expeced, outputs0):
+        print("check 0")
+        assert np.all(abs(a-b) < 1e-4)
+
+    for a,b in zip(expeced, outputs0):
+        print("check 1")
         assert np.all(abs(a-b) < 1e-4)
 
     print("pass")
