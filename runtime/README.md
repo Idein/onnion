@@ -58,4 +58,5 @@ This runtime supports only below operators.
 - Sub
   - must be from opsetversion >= 7
 - TopK
+- Transpose
 - Unsqueeze

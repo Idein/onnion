@@ -15,4 +15,5 @@ from .slice import Slice  # noqa: F401
 from .squeeze import Squeeze  # noqa: F401
 from .sub import Sub  # noqa: F401
 from .topk import TopK  # noqa: F401
+from .transpose import Transpose  # noqa: F401
 from .unsqueeze import Unsqueeze  # noqa: F401
