@@ -37,6 +37,7 @@ $ poetry install
 ## Supported Operators
 This runtime supports only below operators.
 
+- Abs
 - Add
   - must be from opsetversion >= 7
 - Cast
