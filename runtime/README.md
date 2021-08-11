@@ -53,6 +53,7 @@ This runtime supports only below operators.
 - NonMaxSuppression
 - ReduceMin
 - Reshape
+- Round
 - Shape
 - Slice
 - Squeeze
