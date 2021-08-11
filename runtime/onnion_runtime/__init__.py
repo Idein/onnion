@@ -11,6 +11,7 @@ from .mul import Mul  # noqa: F401
 from .nonmaxsuppression import NonMaxSuppression  # noqa: F401
 from .reducemin import ReduceMin  # noqa: F401
 from .reshape import Reshape  # noqa: F401
+from .round import Round  # noqa: F401
 from .shape import Shape  # noqa: F401
 from .slice import Slice  # noqa: F401
 from .squeeze import Squeeze  # noqa: F401
