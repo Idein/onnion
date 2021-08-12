@@ -13,6 +13,7 @@ from .reducemin import ReduceMin  # noqa: F401
 from .reshape import Reshape  # noqa: F401
 from .round import Round  # noqa: F401
 from .shape import Shape  # noqa: F401
+from .sigmoid import Sigmoid  # noqa: F401
 from .slice import Slice  # noqa: F401
 from .squeeze import Squeeze  # noqa: F401
 from .sub import Sub  # noqa: F401

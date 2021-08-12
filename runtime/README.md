@@ -55,6 +55,7 @@ This runtime supports only below operators.
 - Reshape
 - Round
 - Shape
+- Sigmoid
 - Slice
 - Squeeze
 - Sub
