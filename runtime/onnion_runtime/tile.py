@@ -9,6 +9,9 @@ class Tile:
 
     def run(self, x, repeats, axis=None):
         if self.version >= 6:
-            return [np.tile(x, repeats)]
+            if np.ndim(x) == repeats.size:
+                return [np.tile(x, repeats)]
+            else:
+                raise RunError("Tile", self.version)
         else:
             raise RunError("Tile", self.version)
