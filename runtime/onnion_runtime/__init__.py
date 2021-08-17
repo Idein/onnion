@@ -6,6 +6,7 @@ from .div import Div  # noqa: F401
 from .error import RunError  # noqa: F401
 from .exp import Exp  # noqa: F401
 from .gather import Gather  # noqa: F401
+from .identity import Identity  # noqa: F401
 from .leakyrelu import LeakyRelu  # noqa: F401
 from .mul import Mul  # noqa: F401
 from .nonmaxsuppression import NonMaxSuppression  # noqa: F401
