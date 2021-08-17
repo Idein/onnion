@@ -9,6 +9,7 @@ from .exp import Exp  # noqa: F401
 from .gather import Gather  # noqa: F401
 from .identity import Identity  # noqa: F401
 from .leakyrelu import LeakyRelu  # noqa: F401
+from .loop import Loop  # noqa: F401
 from .mul import Mul  # noqa: F401
 from .nonmaxsuppression import NonMaxSuppression  # noqa: F401
 from .reducemin import ReduceMin  # noqa: F401
