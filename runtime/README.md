@@ -43,6 +43,7 @@ This runtime supports only below operators.
 - Cast
   - must be from opsetversion >= 6
 - Concat
+- Constant
 - Div
   - must be from opsetversion >= 7
 - Exp

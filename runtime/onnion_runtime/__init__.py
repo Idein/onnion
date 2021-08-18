@@ -2,6 +2,7 @@ from .abs import Abs  # noqa: F401
 from .add import Add  # noqa: F401
 from .cast import Cast  # noqa: F401
 from .concat import Concat  # noqa: F401
+from .constant import Constant  # noqa: F401
 from .div import Div  # noqa: F401
 from .error import RunError  # noqa: F401
 from .exp import Exp  # noqa: F401
