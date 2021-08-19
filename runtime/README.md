@@ -50,6 +50,7 @@ This runtime supports only below operators.
 - Gather
 - Identity
 - LeakyRelu
+- Loop
 - Mul
   - must be from opsetversion >= 7
 - NonMaxSuppression
