@@ -39,6 +39,7 @@ This runtime supports only below operators.
 
 - Abs
 - Acos
+- Acosh
 - Add
   - must be from opsetversion >= 7
 - Cast
