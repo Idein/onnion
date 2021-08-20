@@ -1,4 +1,5 @@
 from .abs import Abs  # noqa: F401
+from .acos import Acos  # noqa: F401
 from .add import Add  # noqa: F401
 from .cast import Cast  # noqa: F401
 from .concat import Concat  # noqa: F401
