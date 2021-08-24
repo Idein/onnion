@@ -42,6 +42,8 @@ This runtime supports only below operators.
 - Acosh
 - Add
   - must be from opsetversion >= 7
+- And
+  - must be from opsetversion >= 7
 - Cast
   - must be from opsetversion >= 6
 - Concat
