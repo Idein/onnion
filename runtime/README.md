@@ -44,6 +44,7 @@ This runtime supports only below operators.
   - must be from opsetversion >= 7
 - And
   - must be from opsetversion >= 7
+- ArgMax
 - Cast
   - must be from opsetversion >= 6
 - Concat
