@@ -45,4 +45,7 @@ def check(
         inputs[n] = v
     results = run_onnx(model, inputs, output_names)
     for a, b in zip(results, output_values):
-        assert np.all(abs(a - b) < max_error)
+        if a.dtype == bool:
+            assert np.all(a == b)
+        else:
+            assert np.all(abs(a - b) < max_error)
