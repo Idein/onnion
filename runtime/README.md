@@ -50,6 +50,7 @@ This runtime supports only below operators.
 - Asinh
 - Atan
 - Atanh
+- BitShift
 - Cast
   - must be from opsetversion >= 6
 - Concat
