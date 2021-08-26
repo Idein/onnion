@@ -8,6 +8,7 @@ from .argmin import ArgMin  # noqa: F401
 from .asin import Asin  # noqa: F401
 from .asinh import Asinh  # noqa: F401
 from .atan import Atan  # noqa: F401
+from .atanh import Atanh  # noqa: F401
 from .cast import Cast  # noqa: F401
 from .concat import Concat  # noqa: F401
 from .constant import Constant  # noqa: F401

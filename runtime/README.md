@@ -49,6 +49,7 @@ This runtime supports only below operators.
 - Asin
 - Asinh
 - Atan
+- Atanh
 - Cast
   - must be from opsetversion >= 6
 - Concat
