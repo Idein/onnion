@@ -12,6 +12,7 @@ from .atanh import Atanh  # noqa: F401
 from .bitshift import BitShift  # noqa: F401
 from .cast import Cast  # noqa: F401
 from .ceil import Ceil  # noqa: F401
+from .celu import Celu  # noqa: F401
 from .concat import Concat  # noqa: F401
 from .constant import Constant  # noqa: F401
 from .div import Div  # noqa: F401
