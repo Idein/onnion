@@ -54,6 +54,7 @@ This runtime supports only below operators.
 - Cast
   - must be from opsetversion >= 6
 - Ceil
+- Celu
 - Concat
 - Constant
 - Div
