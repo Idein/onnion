@@ -55,6 +55,7 @@ This runtime supports only below operators.
   - must be from opsetversion >= 6
 - Ceil
 - Celu
+- Clip
 - Concat
 - Constant
 - Div
