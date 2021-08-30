@@ -58,6 +58,7 @@ This runtime supports only below operators.
 - Clip
 - Compress
 - Concat
+- ConcatFromSequence
 - Constant
 - Div
   - must be from opsetversion >= 7

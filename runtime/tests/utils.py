@@ -1,5 +1,5 @@
 import tempfile
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Union
 
 import numpy as np
 import onnx
@@ -22,20 +22,29 @@ def run_onnx(model, inputs, output_names):
 def check(
     op_name: str,
     attrs: Dict[str, Any],
-    input_values: List[np.array],
-    output_values: List[np.array],
+    input_values: List[Union[np.array, List[np.array]]],
+    output_values: List[Union[np.array, List[np.array]]],
     opset_version: int,
     max_error=1e-4,
 ):
     input_names = [f"input{i}" for i, _ in enumerate(input_values)]
     output_names = [f"output{i}" for i, _ in enumerate(output_values)]
     node = helper.make_node(op_name, input_names, output_names, **attrs)
-    input_tensors = [
-        helper.make_tensor_value_info(n, convert_type(v.dtype), list(v.shape)) for n, v in zip(input_names, input_values)
-    ]
-    output_tensors = [
-        helper.make_tensor_value_info(n, convert_type(v.dtype), list(v.shape)) for n, v in zip(output_names, output_values)
-    ]
+
+    input_tensors = []
+    for n, v in zip(input_names, input_values):
+        if type(v) == list:
+            input_tensors.append(helper.make_sequence_value_info(n, convert_type(v[0].dtype), list(v[0].shape)))
+        else:
+            input_tensors.append(helper.make_tensor_value_info(n, convert_type(v.dtype), list(v.shape)))
+
+    output_tensors = []
+    for n, v in zip(output_names, output_values):
+        if type(v) == list:
+            output_tensors.append(helper.make_sequence_value_info(n, convert_type(v[0].dtype), list(v[0].shape)))
+        else:
+            output_tensors.append(helper.make_tensor_value_info(n, convert_type(v.dtype), list(v.shape)))
+
     graph = helper.make_graph([node], "test_graph", input_tensors, output_tensors)
     opset_imports = [helper.make_opsetid("", opset_version)]
     model = helper.make_model(graph, opset_imports=opset_imports)

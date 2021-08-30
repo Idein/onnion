@@ -16,6 +16,7 @@ from .celu import Celu  # noqa: F401
 from .clip import Clip  # noqa: F401
 from .compress import Compress  # noqa: F401
 from .concat import Concat  # noqa: F401
+from .concatfromsequence import ConcatFromSequence  # noqa: F401
 from .constant import Constant  # noqa: F401
 from .div import Div  # noqa: F401
 from .error import RunError  # noqa: F401
