@@ -56,6 +56,7 @@ This runtime supports only below operators.
 - Ceil
 - Celu
 - Clip
+- Compress
 - Concat
 - Constant
 - Div
