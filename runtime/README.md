@@ -59,6 +59,7 @@ This runtime supports only below operators.
 - Compress
 - Concat
 - Constant
+- ConstantOfShape
 - Div
   - must be from opsetversion >= 7
 - Exp
