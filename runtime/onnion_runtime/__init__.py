@@ -19,6 +19,7 @@ from .concat import Concat  # noqa: F401
 from .concatfromsequence import ConcatFromSequence  # noqa: F401
 from .constant import Constant  # noqa: F401
 from .constantofshape import ConstantOfShape  # noqa: F401
+from .cos import Cos  # noqa: F401
 from .div import Div  # noqa: F401
 from .error import RunError  # noqa: F401
 from .exp import Exp  # noqa: F401

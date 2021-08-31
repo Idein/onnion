@@ -61,6 +61,7 @@ This runtime supports only below operators.
 - ConcatFromSequence
 - Constant
 - ConstantOfShape
+- Cos
 - Div
   - must be from opsetversion >= 7
 - Exp
