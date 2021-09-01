@@ -8,7 +8,7 @@ class DequantizeLinear:
 
     def run(self, x, x_scale, x_zero_point=None):
         if x_zero_point is None:
-            z = np.zeros(x_scale.size).reshape(x_scale.shape).astype(np.np.uint8)
+            z = np.zeros(x_scale.size).reshape(x_scale.shape).astype(np.uint8)
         else:
             z = x_zero_point
 
