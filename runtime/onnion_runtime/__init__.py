@@ -22,6 +22,7 @@ from .constantofshape import ConstantOfShape  # noqa: F401
 from .cos import Cos  # noqa: F401
 from .cosh import Cosh  # noqa: F401
 from .depthtospace import DepthToSpace  # noqa: F401
+from .dequantizelinear import DequantizeLinear  # noqa: F401
 from .div import Div  # noqa: F401
 from .error import RunError  # noqa: F401
 from .exp import Exp  # noqa: F401

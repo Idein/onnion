@@ -64,6 +64,7 @@ This runtime supports only below operators.
 - Cos
 - Cosh
 - DepthToSpace
+- DequantizeLinear
 - Div
   - must be from opsetversion >= 7
 - Exp
