@@ -63,6 +63,7 @@ This runtime supports only below operators.
 - ConstantOfShape
 - Cos
 - Cosh
+- DepthToSpace
 - Div
   - must be from opsetversion >= 7
 - Exp
