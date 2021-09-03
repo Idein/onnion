@@ -69,6 +69,7 @@ This runtime supports only below operators.
 - Div
   - must be from opsetversion >= 7
 - Dropout
+- DynamicQuantizeLinear
 - Exp
 - Gather
 - Identity
