@@ -87,10 +87,25 @@ def gen_run_body(
 ) -> str:
     graph_body = []
     for n in graph.node:
-        output_names = ", ".join([value_name_table[o] for o in n.output])
+        outputs = []
+        for o in n.output:
+            if o == "":
+                # Optional output
+                # See: https://github.com/onnx/onnx/blob/master/docs/IR.md#optional-inputs-and-outputs
+                outputs.append("_")
+            else:
+                outputs.append(value_name_table[o])
+        outputs.append("*_")
+        output_names = ", ".join(outputs)
+
         inputs = []
         for i in n.input:
-            if i in initializer:
+            if i == "":
+                # Optional Input
+                # See: https://github.com/onnx/onnx/blob/master/docs/IR.md#optional-inputs-and-outputs
+                # onnion-rt require None for optional inputs.
+                inputs.append("None")
+            elif i in initializer:
                 inputs.append(f'self.initializer["{i}"]')
             else:
                 inputs.append(value_name_table[i])
@@ -124,7 +139,7 @@ def gen_run_body(
                 assert f"Error: Not support the node {n}"
         args = ", ".join(op_args)
 
-        graph_body.append(f"[{output_names}] = rt.{n.op_type}({args}).run({input_names}) # {n.name}")
+        graph_body.append(f"{output_names} = rt.{n.op_type}({args}).run({input_names}) # {n.name}")
     return "\n        ".join(graph_body)
 
 
