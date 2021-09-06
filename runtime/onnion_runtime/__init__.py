@@ -28,6 +28,7 @@ from .div import Div  # noqa: F401
 from .dropout import Dropout  # noqa: F401
 from .dynamicquantizelinear import DynamicQuantizeLinear  # noqa: F401
 from .einsum import Einsum  # noqa: F401
+from .elu import Elu  # noqa: F401
 from .error import RunError  # noqa: F401
 from .exp import Exp  # noqa: F401
 from .gather import Gather  # noqa: F401
