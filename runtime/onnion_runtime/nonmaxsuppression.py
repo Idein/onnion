@@ -1,8 +1,5 @@
 import numpy as np
 
-ZERO_INT64 = np.array([0], dtype=np.int64)
-ZERO_FLOAT32 = np.array([0], dtype=np.float32)
-
 
 class NonMaxSuppression:
     def __init__(self, opset_version, **kwargs):
@@ -10,9 +7,14 @@ class NonMaxSuppression:
         self.center_point_box = kwargs.get("center_point_box", 0)
 
     # Ref: https://github.com/microsoft/onnxruntime/blob/55b26b69513d3972e7c0a70f0d54f3fbb8adc054/onnxruntime/core/providers/cpu/object_detection/non_max_suppression.cc#L117  # noqa: B950
-    def run(
-        self, boxes, scores, max_output_boxes_per_class=ZERO_INT64, iou_threshold=ZERO_FLOAT32, score_threshold=ZERO_FLOAT32
-    ):
+    def run(self, boxes, scores, max_output_boxes_per_class=None, iou_threshold=None, score_threshold=None):
+
+        if max_output_boxes_per_class is None:
+            max_output_boxes_per_class = np.array([0], dtype=np.int64)
+        if iou_threshold is None:
+            iou_threshold = np.array([0], dtype=np.float32)
+        if score_threshold is None:
+            score_threshold = np.array([0], dtype=np.float32)
 
         num_batches, num_classes, _ = scores.shape
         selected_indices = list()
