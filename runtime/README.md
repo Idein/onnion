@@ -72,6 +72,8 @@ This runtime supports only below operators.
 - DynamicQuantizeLinear
 - Einsum
 - Elu
+- Equal
+  - must be from opsetversion >= 7
 - Exp
 - Gather
 - Identity
