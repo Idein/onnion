@@ -71,6 +71,7 @@ This runtime supports only below operators.
 - Dropout
 - DynamicQuantizeLinear
 - Einsum
+- Elu
 - Exp
 - Gather
 - Identity
