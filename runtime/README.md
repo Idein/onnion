@@ -73,6 +73,7 @@ This runtime supports only below operators.
 - Einsum
 - Elu
 - Exp
+- Expand
 - Gather
 - Identity
 - LeakyRelu
