@@ -30,6 +30,7 @@ from .dynamicquantizelinear import DynamicQuantizeLinear  # noqa: F401
 from .einsum import Einsum  # noqa: F401
 from .elu import Elu  # noqa: F401
 from .equal import Equal  # noqa: F401
+from .erf import Erf  # noqa: F401
 from .error import RunError  # noqa: F401
 from .exp import Exp  # noqa: F401
 from .expand import Expand  # noqa: F401

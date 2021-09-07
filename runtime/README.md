@@ -74,6 +74,7 @@ This runtime supports only below operators.
 - Elu
 - Equal
   - must be from opsetversion >= 7
+- Erf
 - Exp
 - Expand
 - Gather
