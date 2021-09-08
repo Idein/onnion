@@ -78,6 +78,7 @@ This runtime supports only below operators.
 - Exp
 - Expand
 - EyeLike
+- Flatten
 - Gather
 - Identity
 - LeakyRelu
