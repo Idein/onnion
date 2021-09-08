@@ -77,6 +77,7 @@ This runtime supports only below operators.
 - Erf
 - Exp
 - Expand
+- EyeLike
 - Gather
 - Identity
 - LeakyRelu

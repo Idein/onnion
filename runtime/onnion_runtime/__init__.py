@@ -34,6 +34,7 @@ from .erf import Erf  # noqa: F401
 from .error import RunError  # noqa: F401
 from .exp import Exp  # noqa: F401
 from .expand import Expand  # noqa: F401
+from .eyelike import EyeLike  # noqa: F401
 from .gather import Gather  # noqa: F401
 from .identity import Identity  # noqa: F401
 from .leakyrelu import LeakyRelu  # noqa: F401
