@@ -82,6 +82,7 @@ This runtime supports only below operators.
 - Floor
 - Gather
 - GatherElements
+- GahterND
 - Identity
 - LeakyRelu
 - Loop
