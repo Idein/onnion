@@ -119,7 +119,8 @@ def gen_run_body(
             elif a.HasField("s"):
                 op_args.append(f"{a.name}={a.s}")
             elif a.HasField("t"):
-                op_args.append(f"{a.name}={embed_ndarray(a.t)}")
+                v = numpy_helper.to_array(a.t)
+                op_args.append(f"{a.name}={embed_ndarray(v)}")
             elif a.HasField("g"):
                 sub_graph_name = graph_name_table[f"{id(a.g)}"]
                 op_args.append(f'{a.name}=self.sub_graphs["{sub_graph_name}"]')
@@ -130,7 +131,8 @@ def gen_run_body(
             elif len(a.strings) != 0:
                 op_args.append(f"{a.name}={a.strings}")
             elif len(a.tensors) != 0:
-                op_args.append(f"{a.name}={[embed_ndarray(t) for t in a.tensors]}")
+                vs = [numpy_helper.to_array(t) for t in a.tensors]
+                op_args.append(f"{a.name}={[embed_ndarray(v) for v in vs]}")
             elif len(a.graphs) != 0:
                 sub_graph_names = [graph_name_table[f"{id(g)}"] for g in a.graphs]
                 sub_graphs = [f'self.sub_graphs["{n}"]' for n in sub_graph_names]
