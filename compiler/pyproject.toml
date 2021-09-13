@@ -9,7 +9,7 @@ keywords = ["onnx"]
 repository = "https://github.com/Idein/onnion/tree/master/compiler"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.7"
 onnx = "^1.9.0"
 numpy = "^1.21.0"
 
@@ -33,7 +33,7 @@ enable_isort = true
 enable_mypy = true
 mypy_preset = "strict"
 line_length = 128
-py_version = "py38"
+py_version = "py37"
 
 [[tool.pysen.lint.mypy_targets]]
   paths = ["."]
