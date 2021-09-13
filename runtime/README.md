@@ -88,6 +88,7 @@ This runtime supports only below operators.
 - Mul
   - must be from opsetversion >= 7
 - NonMaxSuppression
+- Pad
 - ReduceMin
 - Reshape
 - Round
