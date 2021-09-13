@@ -83,6 +83,8 @@ This runtime supports only below operators.
 - Gather
 - GatherElements
 - GahterND
+- Greater
+  - must be from opsetversion >= 7
 - Identity
 - LeakyRelu
 - Loop
