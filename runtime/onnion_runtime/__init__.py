@@ -58,3 +58,4 @@ from .tile import Tile  # noqa: F401
 from .topk import TopK  # noqa: F401
 from .transpose import Transpose  # noqa: F401
 from .unsqueeze import Unsqueeze  # noqa: F401
+from .where import Where  # noqa: F401
