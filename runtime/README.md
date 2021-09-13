@@ -93,6 +93,7 @@ This runtime supports only below operators.
 - ReduceMin
 - Reshape
 - Round
+- ScatterND
 - Shape
 - Sigmoid
 - Slice
