@@ -39,6 +39,7 @@ from .flatten import Flatten  # noqa: F401
 from .floor import Floor  # noqa: F401
 from .gather import Gather  # noqa: F401
 from .gatherelements import GatherElements  # noqa: F401
+from .gathernd import GatherND  # noqa: F401
 from .identity import Identity  # noqa: F401
 from .leakyrelu import LeakyRelu  # noqa: F401
 from .loop import Loop  # noqa: F401
