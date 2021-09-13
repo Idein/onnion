@@ -90,6 +90,7 @@ This runtime supports only below operators.
   - must be from opsetversion >= 7
 - NonMaxSuppression
 - Pad
+- ReduceMax
 - ReduceMin
 - Reshape
 - Round
