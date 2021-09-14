@@ -46,6 +46,7 @@ from .leakyrelu import LeakyRelu  # noqa: F401
 from .loop import Loop  # noqa: F401
 from .mul import Mul  # noqa: F401
 from .nonmaxsuppression import NonMaxSuppression  # noqa: F401
+from .nonzero import NonZero  # noqa: F401
 from .pad import Pad  # noqa: F401
 from .reducemin import ReduceMin  # noqa: F401
 from .reshape import Reshape  # noqa: F401
