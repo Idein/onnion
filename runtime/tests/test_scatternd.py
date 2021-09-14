@@ -25,3 +25,17 @@ def test_scatternd_00():
     outputs = ScatterND(opset_version).run(data, indices, updates)
 
     check("ScatterND", dict(), inputs, outputs, opset_version)
+
+
+def test_scatternd_01():
+    opset_version = 13
+
+    with open("tests/scatter_nd.npy", "rb") as f:
+        data = np.load(f)
+        indices = np.load(f)
+        updates = np.load(f)
+    print(indices)
+    inputs = [data, indices, updates]
+    outputs = ScatterND(opset_version).run(data, indices, updates)
+
+    check("ScatterND", dict(), inputs, outputs, opset_version)
