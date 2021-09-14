@@ -108,3 +108,4 @@ This runtime supports only below operators.
 - TopK
 - Transpose
 - Unsqueeze
+- Where
