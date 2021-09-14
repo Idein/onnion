@@ -93,6 +93,7 @@ This runtime supports only below operators.
 - NonMaxSuppression
 - NonZero
 - Pad
+- Range
 - ReduceMax
 - ReduceMin
 - Reshape
