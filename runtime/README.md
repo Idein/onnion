@@ -83,6 +83,8 @@ This runtime supports only below operators.
 - Gather
 - GatherElements
 - GahterND
+- Gemm
+  - must be from opsetversion >= 7
 - Greater
   - must be from opsetversion >= 7
 - Identity
