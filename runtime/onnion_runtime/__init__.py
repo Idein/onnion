@@ -42,6 +42,7 @@ from .gatherelements import GatherElements  # noqa: F401
 from .gathernd import GatherND  # noqa: F401
 from .gemm import Gemm  # noqa: F401
 from .globalaveragepool import GlobalAveragePool  # noqa: F401
+from .globalmaxpool import GlobalMaxPool  # noqa: F401
 from .greater import Greater  # noqa: F401
 from .identity import Identity  # noqa: F401
 from .leakyrelu import LeakyRelu  # noqa: F401
