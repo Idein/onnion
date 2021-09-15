@@ -85,6 +85,7 @@ This runtime supports only below operators.
 - GahterND
 - Gemm
   - must be from opsetversion >= 7
+- GlobalAveragePool
 - Greater
   - must be from opsetversion >= 7
 - Identity
