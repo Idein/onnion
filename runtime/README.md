@@ -90,6 +90,7 @@ This runtime supports only below operators.
 - Greater
   - must be from opsetversion >= 7
 - GreaterOrEqual
+- HardSigmoid
 - Identity
 - LeakyRelu
 - Loop
