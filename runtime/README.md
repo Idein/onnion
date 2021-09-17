@@ -92,6 +92,7 @@ This runtime supports only below operators.
 - GreaterOrEqual
 - HardSigmoid
 - HardSwish
+- Hardmax
 - Identity
 - LeakyRelu
 - Loop
