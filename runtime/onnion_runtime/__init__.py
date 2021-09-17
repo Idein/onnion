@@ -45,6 +45,7 @@ from .globalaveragepool import GlobalAveragePool  # noqa: F401
 from .globalmaxpool import GlobalMaxPool  # noqa: F401
 from .greater import Greater  # noqa: F401
 from .greaterorequal import GreaterOrEqual  # noqa: F401
+from .hardmax import Hardmax  # noqa: F401
 from .hardsigmoid import HardSigmoid  # noqa: F401
 from .hardswish import HardSwish  # noqa: F401
 from .identity import Identity  # noqa: F401
