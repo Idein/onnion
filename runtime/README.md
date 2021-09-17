@@ -93,6 +93,7 @@ This runtime supports only below operators.
 - HardSigmoid
 - HardSwish
 - Identity
+- If
 - LeakyRelu
 - Loop
 - Mul
