@@ -95,6 +95,7 @@ This runtime supports only below operators.
 - Hardmax
 - Identity
 - If
+- InstanceNormalization
 - LeakyRelu
 - Loop
 - Mul
