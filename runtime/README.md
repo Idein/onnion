@@ -94,6 +94,7 @@ This runtime supports only below operators.
 - HardSwish
 - Hardmax
 - Identity
+- If
 - LeakyRelu
 - Loop
 - Mul
