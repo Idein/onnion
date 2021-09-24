@@ -97,6 +97,7 @@ This runtime supports only below operators.
 - If
 - InstanceNormalization
 - IsInf
+- IsNaN
 - LeakyRelu
 - Loop
 - Mul
