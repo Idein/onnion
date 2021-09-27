@@ -51,6 +51,7 @@ from .hardswish import HardSwish  # noqa: F401
 from .identity import Identity  # noqa: F401
 from .if_ import If  # noqa: F401
 from .instancenormalization import InstanceNormalization  # noqa: F401
+from .isinf import IsInf  # noqa: F401
 from .leakyrelu import LeakyRelu  # noqa: F401
 from .loop import Loop  # noqa: F401
 from .mul import Mul  # noqa: F401

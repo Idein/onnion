@@ -96,6 +96,7 @@ This runtime supports only below operators.
 - Identity
 - If
 - InstanceNormalization
+- IsInf
 - LeakyRelu
 - Loop
 - Mul
