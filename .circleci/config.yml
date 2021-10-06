@@ -20,9 +20,8 @@ commands:
       - run:
           name: install poetry
           command: |
-            pip3 install cleo tomlkit
             curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
-            echo 'export PATH=$HOME/.poetry/bin:$PATH' >> $BASH_ENV
+            echo 'export PATH=$HOME/.local/bin:$PATH' >> $BASH_ENV
             source $BASH_ENV
             poetry config virtualenvs.in-project true
       - run:
