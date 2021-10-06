@@ -23,7 +23,6 @@ commands:
             curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
             echo 'export PATH=$HOME/.poetry/bin:$PATH' >> $BASH_ENV
             source $BASH_ENV
-            poetry config virtualenvs.in-project true
       - run:
           name: poetry install in << parameters.dir >>
           working_directory: << parameters.dir >>
