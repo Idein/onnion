@@ -7,4 +7,4 @@ class Gather:
         self.axis = kwargs.get("axis", 0)
 
     def run(self, data, indices):
-        return [np.take(data, indices, axis=self.axis)]
+        return [np.take(data, indices.astype(int), axis=self.axis)]
