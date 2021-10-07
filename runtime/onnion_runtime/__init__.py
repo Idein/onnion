@@ -75,3 +75,21 @@ from .topk import TopK  # noqa: F401
 from .transpose import Transpose  # noqa: F401
 from .unsqueeze import Unsqueeze  # noqa: F401
 from .where import Where  # noqa: F401
+
+
+def is_supported(op_name):
+    if op_name == "RunError":
+        return False
+    else:
+        return op_name in globals()
+
+
+def warning(op_name, opset_version):
+    if is_supported(op_name):
+        op_class = globals()[op_name]
+        if hasattr(op_class, "warning"):
+            return op_class.warning(opset_version)
+        else:
+            return None
+    else:
+        return None

@@ -8,3 +8,6 @@ class Gather:
 
     def run(self, data, indices):
         return [np.take(data, indices.astype(int), axis=self.axis)]
+
+    def warning(opset_version):
+        return "Gather may not work with raspi as specified by ONNX."
