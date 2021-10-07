@@ -26,12 +26,13 @@ class TopK:
 # https://github.com/onnx/onnx/blob/2875f51853133d9cc028bbdccb62f92745cb94c2/onnx/backend/test/case/node/topk.py#L15-L23
 # Copyrights (c) ONNX Project Contributers
 # License: Apache-2.0
+# Note: Modify np.arange(k) -> np.arange(k).astype(int)
 def topk_sorted_implementation(X, k, axis, largest):  # type: ignore
     sorted_indices = np.argsort(X, axis=axis)
     sorted_values = np.sort(X, axis=axis)
     if largest:
         sorted_indices = np.flip(sorted_indices, axis=axis)
         sorted_values = np.flip(sorted_values, axis=axis)
-    topk_sorted_indices = np.take(sorted_indices, np.arange(k), axis=axis)
-    topk_sorted_values = np.take(sorted_values, np.arange(k), axis=axis)
+    topk_sorted_indices = np.take(sorted_indices, np.arange(k).astype(int), axis=axis)
+    topk_sorted_values = np.take(sorted_values, np.arange(k).astype(int), axis=axis)
     return topk_sorted_values, np.array(topk_sorted_indices, dtype=np.int64)
