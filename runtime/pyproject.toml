@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "onnion-rt"
-version = "0.3.0"
+version = "0.4.0"
 description = "run onnx with only numpy"
 authors = ["Idein Inc."]
 license = "Apache-2.0"
