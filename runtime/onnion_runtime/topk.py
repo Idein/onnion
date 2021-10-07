@@ -22,7 +22,7 @@ class TopK:
         return [values, indices]
 
     def warning(opset_version):
-        return "TopK may not work with raspi as specified by ONNX."
+        return "TopK may not work with raspi as specified by ONNX. It uses int instead of np.int64."
 
 
 # The following code has been copied from
