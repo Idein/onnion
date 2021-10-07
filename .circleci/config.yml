@@ -33,7 +33,7 @@ commands:
 jobs:
   lint:
     docker:
-      - image: python:3-buster
+      - image: python:3.9-buster
         auth: &docker-hub-auth
           username: $DOCKER_USER
           password: $DOCKER_PASS
@@ -71,7 +71,7 @@ jobs:
 
   test-by-examples:
     docker:
-      - image: python:3-buster
+      - image: python:3.9-buster
         auth: &docker-hub-auth
           username: $DOCKER_USER
           password: $DOCKER_PASS
@@ -97,7 +97,7 @@ jobs:
       package-name:
         type: string
     docker:
-      - image: python:3-buster
+      - image: python:3.9-buster
         auth: *docker-hub-auth
     steps:
       - checkout
@@ -115,7 +115,7 @@ jobs:
 
   deploy-onnion:
     docker:
-      - image: python:3-buster
+      - image: python:3.9-buster
         auth: *docker-hub-auth
     steps:
       - checkout
@@ -129,7 +129,7 @@ jobs:
 
   deploy-onnion-rt:
     docker:
-      - image: python:3-buster
+      - image: python:3.9-buster
         auth: *docker-hub-auth
     steps:
       - checkout
