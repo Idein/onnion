@@ -21,6 +21,9 @@ class TopK:
         values, indices = topk_sorted_implementation(x, self.k, self.axis, self.largest)
         return [values, indices]
 
+    def warning(opset_version):
+        return "TopK may not work with raspi as specified by ONNX. It uses int instead of np.int64."
+
 
 # The following code has been copied from
 # https://github.com/onnx/onnx/blob/2875f51853133d9cc028bbdccb62f92745cb94c2/onnx/backend/test/case/node/topk.py#L15-L23
