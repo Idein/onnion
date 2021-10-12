@@ -12,6 +12,7 @@ repository = "https://github.com/Idein/onnion/tree/master/compiler"
 python = "^3.7"
 onnx = "^1.9.0"
 numpy = "^1.21.0"
+onnion-rt = "^0.4.0"
 
 [tool.poetry.dev-dependencies]
 pysen = {version = "^0.9.1", extras = ["lint"]}

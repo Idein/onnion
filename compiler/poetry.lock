@@ -206,6 +206,17 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
+name = "onnion-rt"
+version = "0.4.0"
+description = "run onnx with only numpy"
+category = "main"
+optional = false
+python-versions = ">=3.6,<4.0"
+
+[package.dependencies]
+numpy = ">=1.19.0,<2.0.0"
+
+[[package]]
 name = "onnx"
 version = "1.10.1"
 description = "Open Neural Network Exchange"
@@ -359,7 +370,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "70821346d428ba3262604ac07aab1e5ba9f0a36c58ab70c29266addd3147ca85"
+content-hash = "1dfb6e00f2325ea8957827d5ce27661b673d92fed0a5d838527b7d8c891f56f7"
 
 [metadata.files]
 appdirs = [
@@ -466,6 +477,10 @@ numpy = [
     {file = "numpy-1.21.1-cp39-cp39-win_amd64.whl", hash = "sha256:01721eefe70544d548425a07c80be8377096a54118070b8a62476866d5208e33"},
     {file = "numpy-1.21.1-pp37-pypy37_pp73-manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:2d4d1de6e6fb3d28781c73fbde702ac97f03d79e4ffd6598b880b2d95d62ead4"},
     {file = "numpy-1.21.1.zip", hash = "sha256:dff4af63638afcc57a3dfb9e4b26d434a7a602d225b42d746ea7fe2edf1342fd"},
+]
+onnion-rt = [
+    {file = "onnion-rt-0.4.0.tar.gz", hash = "sha256:abec896197a13be378d197cf94d7b7bd4c371087d0a607db7b658c82c504ac0b"},
+    {file = "onnion_rt-0.4.0-py3-none-any.whl", hash = "sha256:50fbf833dad1ae79a2ed23d29fede293865c2162e5d295139a5caa0d44395220"},
 ]
 onnx = [
     {file = "onnx-1.10.1-cp36-cp36m-macosx_10_12_x86_64.whl", hash = "sha256:837fd82c67b609d1bc54b478de8489eb17fe0775f5d0772a1153de8478c59e24"},
