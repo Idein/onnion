@@ -29,6 +29,11 @@ commands:
           working_directory: << parameters.dir >>
           command: |
             poetry install
+  enable-user-mode-emulation:
+    steps:
+      - run:
+          name: Enable user mode emulation
+          command: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 
 jobs:
   lint:
@@ -72,17 +77,13 @@ jobs:
 
   test-on-arm32:
     docker:
-      - image: arm32v7/debian:11
-        auth: &docker-hub-auth
-          username: $DOCKER_USER
-          password: $DOCKER_PASS
+      - image: cimg/base:2021.04
     steps:
       - run: uname -a
+      - setup_remote_docker
+      - enable-user-mode-emulation
       - run: |
-          apt update
-          apt install -y --no-install-recommends python3 python3-numpy python3-pytest
-      - run: python3 --version
-      - run: python3 -c "import numpy; print(numpy.version.version)"
+          docker run --rm arm32v7/debian:11 uname -a
 
   test-by-examples:
     docker:
