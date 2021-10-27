@@ -53,7 +53,8 @@ jobs:
           working_directory: runtime
           command: |
             poetry run pysen run lint
-  test:
+
+  test-on-x86:
     parameters:
       python-version:
         type: string
@@ -68,6 +69,20 @@ jobs:
           name: Test onnion-rt
           working_directory: runtime
           command: poetry run pytest -v
+
+  test-on-arm32:
+    docker:
+      - image: arm32v7/debian:11
+        auth: &docker-hub-auth
+          username: $DOCKER_USER
+          password: $DOCKER_PASS
+    steps:
+      - run: uname -a
+      - run: |
+          apt update
+          apt install -y --no-install-recommends python3 python3-numpy python3-pytest
+      - run: python3 --version
+      - run: python3 -c "import numpy; print(numpy.version.version)"
 
   test-by-examples:
     docker:
@@ -148,12 +163,15 @@ workflows:
       - lint:
           context:
             - docker-hub-creds
-      - test:
+      - test-on-x86:
           context:
             - docker-hub-creds
           matrix:
             parameters:
               python-version: *python-versions
+      - test-on-arm32:
+          context:
+            - docker-hub-creds
       - test-by-examples:
           context:
             - docker-hub-creds
