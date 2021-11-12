@@ -1,7 +1,7 @@
 version: 2.1
 
 references:
-  onnion-ci-base-image: &onnion-ci-base-image "python:3.9-bullseye"
+  onnion-ci-base-image: &onnion-ci-base-image "python:3.9.7-bullseye"
 
 commands:
   install-python-dev-tools:
