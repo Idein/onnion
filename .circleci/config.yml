@@ -1,7 +1,7 @@
 version: 2.1
 
 references:
-  python-versions: &python-versions ["3.6", "3.7", "3.8", "3.9"]
+  onnion-ci-base-image: python:3.9-bullseye
 
 commands:
   install-python-dev-tools:
@@ -33,7 +33,7 @@ commands:
 jobs:
   lint:
     docker:
-      - image: python:3.9-buster
+      - image: *onnion-ci-base-image
         auth: &docker-hub-auth
           username: $DOCKER_USER
           password: $DOCKER_PASS
@@ -53,12 +53,9 @@ jobs:
           working_directory: runtime
           command: |
             poetry run pysen run lint
-  test:
-    parameters:
-      python-version:
-        type: string
+  legacy-test:
     docker:
-      - image: python:<<parameters.python-version>>-buster
+      - image: *onnion-ci-base-image
         auth: *docker-hub-auth
     steps:
       - checkout
@@ -67,11 +64,11 @@ jobs:
       - run:
           name: Test onnion-rt
           working_directory: runtime
-          command: poetry run pytest -v
+          command: poetry run pytest -v legacy_tests
 
   test-by-examples:
     docker:
-      - image: python:3.9-buster
+      - image: *onnion-ci-base-image
         auth: &docker-hub-auth
           username: $DOCKER_USER
           password: $DOCKER_PASS
@@ -97,7 +94,7 @@ jobs:
       package-name:
         type: string
     docker:
-      - image: python:3.9-buster
+      - image: *onnion-ci-base-image
         auth: *docker-hub-auth
     steps:
       - checkout
@@ -115,7 +112,7 @@ jobs:
 
   deploy-onnion:
     docker:
-      - image: python:3.9-buster
+      - image: *onnion-ci-base-image
         auth: *docker-hub-auth
     steps:
       - checkout
@@ -129,7 +126,7 @@ jobs:
 
   deploy-onnion-rt:
     docker:
-      - image: python:3.9-buster
+      - image: *onnion-ci-base-image
         auth: *docker-hub-auth
     steps:
       - checkout
@@ -148,12 +145,9 @@ workflows:
       - lint:
           context:
             - docker-hub-creds
-      - test:
+      - legacy-test:
           context:
             - docker-hub-creds
-          matrix:
-            parameters:
-              python-version: *python-versions
       - test-by-examples:
           context:
             - docker-hub-creds
