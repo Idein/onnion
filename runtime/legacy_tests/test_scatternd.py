@@ -30,7 +30,7 @@ def test_scatternd_00():
 def test_scatternd_01():
     opset_version = 13
 
-    with open("tests/scatter_nd.npy", "rb") as f:
+    with open("legacy_tests/scatter_nd.npy", "rb") as f:
         data = np.load(f)
         indices = np.load(f)
         updates = np.load(f)
