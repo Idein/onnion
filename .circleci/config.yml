@@ -85,10 +85,13 @@ jobs:
       - checkout
       - poetry-install:
           dir: runtime
-      # - run:
-      #     name: Test onnion-rt
-      #     working_directory: runtime
-      #     command: poetry run pytest -v tests
+      - run:
+          name: Test onnion-rt
+          working_directory: runtime
+          command: poetry run pytest -v tests
+      - run:
+          working_directory: runtime
+          command: rm -rf tests/__pycache__
       - persist_to_workspace:
           root: .
           paths:
@@ -111,11 +114,8 @@ jobs:
       - docker-login
       - enable-user-mode-emulation
       - run: |
-          docker run --rm arm32v7/debian:11 uname -a
-      - run: |
           docker create -v /work --name src arm32v7/debian:11 /bin/true
           docker cp /tmp/runtime src:/work
-          docker run --rm --volumes-from src -w /work/runtime idein/onnion-arm32-env ls
           docker run --rm --volumes-from src -w /work/runtime idein/onnion-arm32-env python3 -m pytest -v tests
 
   test-by-examples:
