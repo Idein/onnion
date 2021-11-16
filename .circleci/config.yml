@@ -86,9 +86,9 @@ jobs:
       - poetry-install:
           dir: runtime
       - run:
-          name: Test onnion-rt
+          name: Test onnion-rt on x86
           working_directory: runtime
-          command: poetry run pytest -v tests
+          command: poetry run pytest --log-cli-level=INFO -v tests
       - run:
           working_directory: runtime
           command: rm -rf tests/__pycache__
@@ -107,16 +107,16 @@ jobs:
       - attach_workspace:
           at: /tmp
       - run: |
-          ls /tmp
-          ls /tmp/runtime
           ls /tmp/runtime/tests
       - setup_remote_docker
       - docker-login
       - enable-user-mode-emulation
-      - run: |
-          docker create -v /work --name src arm32v7/debian:11 /bin/true
-          docker cp /tmp/runtime src:/work
-          docker run --rm --volumes-from src -w /work/runtime idein/onnion-arm32-env python3 -m pytest -v tests
+      - run:
+          name: Test onnion-rt on arm32
+          command: |
+            docker create -v /work --name src arm32v7/debian:11 /bin/true
+            docker cp /tmp/runtime src:/work
+            docker run --rm --volumes-from src -w /work/runtime idein/onnion-arm32-env python3 -m pytest --log-cli-level=INFO -v tests
 
   test-by-examples:
     docker:

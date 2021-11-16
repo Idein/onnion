@@ -1,4 +1,5 @@
 import inspect
+import logging
 import os
 import platform
 import tempfile
@@ -15,6 +16,8 @@ try:
 except Exception:
     WITHOUT_ONNXRUNTIME = True
 
+LOGGER = logging.getLogger(__name__)
+
 
 def on_arm32():
     try:
@@ -28,6 +31,7 @@ def on_arm32():
         else:
             raise Exception("on_arm32: unknown arch")
 
+    LOGGER.info(f"on_arm32: {result}")
     return result
 
 
@@ -40,6 +44,7 @@ def _save_data(f, vs):
 
 
 def load_test_data(file_name):
+    LOGGER.info(f"load from {file_name}")
     with open(file_name, "rb") as f:
         inputs = _load_data(f)
         outputs = _load_data(f)
@@ -47,6 +52,7 @@ def load_test_data(file_name):
 
 
 def save_test_data(file_name, inputs, outputs):
+    LOGGER.info(f"save to {file_name}")
     with open(file_name, "wb") as f:
         _save_data(f, inputs)
         _save_data(f, outputs)
