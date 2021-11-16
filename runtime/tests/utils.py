@@ -39,18 +39,14 @@ def _save_data(f, vs):
     np.save(f, np.array(vs, dtype=object))
 
 
-def load_test_data():
-    caller_name = inspect.stack()[1].function
-    file_name = f"tests/{caller_name}.npy"
+def load_test_data(file_name):
     with open(file_name, "rb") as f:
         inputs = _load_data(f)
         outputs = _load_data(f)
     return inputs, outputs
 
 
-def save_test_data(inputs, outputs):
-    caller_name = inspect.stack()[1].function
-    file_name = f"tests/{caller_name}.npy"
+def save_test_data(file_name, inputs, outputs):
     with open(file_name, "wb") as f:
         _save_data(f, inputs)
         _save_data(f, outputs)
@@ -118,3 +114,20 @@ def check_by_onnxruntime(
 
     check_by_data(results, output_values, max_error)
     return results
+
+
+def check(onnion_op, opset_version, attrs, input_values, max_error=1e-4):
+    caller_name = inspect.stack()[1].function
+    npy_file = f"tests/{caller_name}.npy"
+
+    op = onnion_op(opset_version, **attrs)
+
+    if on_arm32():
+        inputs, outputs0 = load_test_data(npy_file)
+        outputs = op.run(*inputs)
+        check_by_data(outputs0, outputs, max_error)
+    else:
+        outputs = op.run(*input_values)
+        op_name = type(op).__name__
+        outputs0 = check_by_onnxruntime(op_name, attrs, input_values, outputs, opset_version, max_error)
+        save_test_data(npy_file, input_values, outputs0)
