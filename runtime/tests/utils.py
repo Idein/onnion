@@ -98,14 +98,14 @@ def check_by_onnxruntime(
     input_tensors = []
     for n, v in zip(input_names, input_values):
         if type(v) == list:
-            input_tensors.append(helper.make_sequence_value_info(n, _convert_type(v[0].dtype), list(v[0].shape)))
+            input_tensors.append(helper.make_tensor_sequence_value_info(n, _convert_type(v[0].dtype), list(v[0].shape)))
         else:
             input_tensors.append(helper.make_tensor_value_info(n, _convert_type(v.dtype), list(v.shape)))
 
     output_tensors = []
     for n, v in zip(output_names, output_values):
         if type(v) == list:
-            output_tensors.append(helper.make_sequence_value_info(n, _convert_type(v[0].dtype), list(v[0].shape)))
+            output_tensors.append(helper.make_tensor_sequence_value_info(n, _convert_type(v[0].dtype), list(v[0].shape)))
         else:
             output_tensors.append(helper.make_tensor_value_info(n, _convert_type(v.dtype), list(v.shape)))
 
