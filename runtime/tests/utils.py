@@ -35,6 +35,26 @@ def on_arm32():
     return result
 
 
+def _get_dtypes(inputs):
+    dtypes = []
+    for i in inputs:
+        if type(i) == list:
+            dtypes.append(_get_dtypes(i))
+        else:
+            dtypes.append(i.dtype)
+    return dtypes
+
+
+def _cast_as(vs, dtypes):
+    res = []
+    for v, t in zip(vs, dtypes):
+        if type(t) == list:
+            res.append(_cast_as(list(v), t))
+        else:
+            res.append(v.astype(t))
+    return res
+
+
 def _load_data(f):
     return list(np.load(f, allow_pickle=True))
 
@@ -43,12 +63,13 @@ def _save_data(f, vs):
     np.save(f, np.array(vs, dtype=object))
 
 
-def load_test_data(file_name):
+def load_test_data(file_name, dtypes):
     LOGGER.info(f"load from {file_name}")
     with open(file_name, "rb") as f:
-        inputs = _load_data(f)
+        inputs0 = _load_data(f)
         outputs = _load_data(f)
-    return inputs, outputs
+    inputs1 = _cast_as(inputs0, dtypes)
+    return inputs1, outputs
 
 
 def save_test_data(file_name, inputs, outputs):
@@ -129,7 +150,8 @@ def check(onnion_op, opset_version, attrs, input_values, max_error=1e-4):
     op = onnion_op(opset_version, **attrs)
 
     if on_arm32():
-        inputs, outputs0 = load_test_data(npy_file)
+        dtypes = _get_dtypes(input_values)
+        inputs, outputs0 = load_test_data(npy_file, dtypes)
         outputs = op.run(*inputs)
         check_by_data(outputs0, outputs, max_error)
     else:
