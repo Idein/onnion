@@ -35,48 +35,35 @@ def on_arm32():
     return result
 
 
-def _get_dtypes(inputs):
-    dtypes = []
-    for i in inputs:
-        if type(i) == list:
-            dtypes.append(_get_dtypes(i))
-        else:
-            dtypes.append(i.dtype)
-    return dtypes
+def _load_data(f, vs):
+    if type(vs) == list:
+        res = []
+        for v in vs:
+            res.append(_load_data(f, v))
+        return res
+    else:
+        return np.load(f)
 
 
-def _cast_as(vs, dtypes):
-    res = []
-    for v, t in zip(vs, dtypes):
-        if type(t) == list:
-            res.append(_cast_as(list(v), t))
-        else:
-            res.append(v.astype(t))
+def load_test_data(file_name, vs):
+    LOGGER.info(f"load from {file_name}")
+    with open(file_name, "rb") as f:
+        res = _load_data(f, vs)
     return res
 
 
-def _load_data(f):
-    return list(np.load(f, allow_pickle=True))
-
-
 def _save_data(f, vs):
-    np.save(f, np.array(vs, dtype=object))
+    if type(vs) == list:
+        for v in vs:
+            _save_data(f, v)
+    else:
+        np.save(f, vs)
 
 
-def load_test_data(file_name, dtypes):
-    LOGGER.info(f"load from {file_name}")
-    with open(file_name, "rb") as f:
-        inputs0 = _load_data(f)
-        outputs = _load_data(f)
-    inputs1 = _cast_as(inputs0, dtypes)
-    return inputs1, outputs
-
-
-def save_test_data(file_name, inputs, outputs):
+def save_test_data(file_name, vs):
     LOGGER.info(f"save to {file_name}")
     with open(file_name, "wb") as f:
-        _save_data(f, inputs)
-        _save_data(f, outputs)
+        _save_data(f, vs)
 
 
 def check_by_data(expected, result, max_error=1e-4):
@@ -145,17 +132,19 @@ def check_by_onnxruntime(
 
 def check(onnion_op, opset_version, attrs, input_values, max_error=1e-4):
     caller_name = inspect.stack()[1].function
-    npy_file = f"tests/{caller_name}.npy"
+    input_npy_file = f"tests/{caller_name}_inputs.npy"
+    output_npy_file = f"tests/{caller_name}_outputs.npy"
 
     op = onnion_op(opset_version, **attrs)
 
     if on_arm32():
-        dtypes = _get_dtypes(input_values)
-        inputs, outputs0 = load_test_data(npy_file, dtypes)
+        inputs = load_test_data(input_npy_file, input_values)
         outputs = op.run(*inputs)
+        outputs0 = load_test_data(output_npy_file, outputs)
         check_by_data(outputs0, outputs, max_error)
     else:
         outputs = op.run(*input_values)
         op_name = type(op).__name__
         outputs0 = check_by_onnxruntime(op_name, attrs, input_values, outputs, opset_version, max_error)
-        save_test_data(npy_file, input_values, outputs0)
+        save_test_data(input_npy_file, input_values)
+        save_test_data(output_npy_file, outputs0)
