@@ -10,7 +10,7 @@ import numpy as np
 try:
     import onnx
     import onnxruntime
-    from onnx import checker, helper, mapping
+    from onnx import checker, helper, mapping, numpy_helper
 
     WITHOUT_ONNXRUNTIME = False
 except Exception:
@@ -101,6 +101,8 @@ def check_by_onnxruntime(
 
     input_names = [f"input{i}" for i, _ in enumerate(input_values)]
     output_names = [f"output{i}" for i, _ in enumerate(output_values)]
+    if op_name in ["Constant", "ConstantOfShape"]:
+        attrs["value"] = numpy_helper.from_array(attrs["value"])
     node = helper.make_node(op_name, input_names, output_names, **attrs)
 
     input_tensors = []
