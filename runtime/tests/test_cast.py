@@ -1,7 +1,8 @@
 import numpy as np
+import pytest
 from onnion_runtime import Cast
 
-from .utils import check
+from .utils import check, on_arm32
 
 
 def test_cast_00():
@@ -37,12 +38,13 @@ def test_cast_02():
     check(Cast, opset_version, attrs, inputs)
 
 
-# def test_cast_03():
-#     opset_version = 13
-#     t = 12 # UINT32
-#     attrs = {"to": t}
+@pytest.mark.xfail(on_arm32(), reason="astype returns different results on arm32")
+def test_cast_03():
+    opset_version = 13
+    t = 12  # UINT32
+    attrs = {"to": t}
 
-#     x = np.random.randn(3, 5).astype(np.float32)
-#     inputs = [x]
+    x = np.random.randn(3, 5).astype(np.float32)
+    inputs = [x]
 
-#     check(Cast, opset_version, attrs, inputs)
+    check(Cast, opset_version, attrs, inputs)
