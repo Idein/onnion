@@ -14,9 +14,9 @@ class Dropout:
             if ratio is not None:
                 self.ratio = ratio
             if training_mode is not None:
-                return dropout(data, self.ratio, self.seed, training_mode.item(), return_mask=True)
+                return list(dropout(data, self.ratio, self.seed, training_mode.item(), return_mask=True))
             else:
-                return dropout(data, self.ratio, self.seed, return_mask=True)
+                return list(dropout(data, self.ratio, self.seed, return_mask=True))
         else:
             return [data, np.zeros(data.shape, dtype=bool)]
 
