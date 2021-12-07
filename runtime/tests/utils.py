@@ -103,6 +103,11 @@ def check_by_onnxruntime(
     output_names = [f"output{i}" for i, _ in enumerate(output_values)]
     if op_name in ["Constant", "ConstantOfShape"]:
         attrs["value"] = numpy_helper.from_array(attrs["value"])
+    elif op_name == "If":
+        attrs["then_branch"] = attrs["then_branch"].to_onnx()
+        attrs["else_branch"] = attrs["else_branch"].to_onnx()
+    elif op_name == "Loop":
+        attrs["body"] = attrs["body"].to_onnx()
     node = helper.make_node(op_name, input_names, output_names, **attrs)
 
     input_tensors = []
