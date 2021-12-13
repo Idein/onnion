@@ -15,7 +15,12 @@ numpy = "^1.21.0"
 onnion-rt = "^0.4.0"
 
 [tool.poetry.dev-dependencies]
-pysen = {version = "^0.9.1", extras = ["lint"]}
+pysen = {version = "^0.10.1"}
+black = "21.10b0"
+flake8 = "4.0.1"
+flake8-bugbear = "21.9.2"
+isort = "5.9.3"
+mypy = "0.812"
 
 [tool.poetry.scripts]
 onnion = "onnion.main:main"
@@ -25,7 +30,7 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pysen]
-version = "0.9"
+version = "0.10"
 
 [tool.pysen.lint]
 enable_black = true
@@ -37,4 +42,4 @@ line_length = 128
 py_version = "py37"
 
 [[tool.pysen.lint.mypy_targets]]
-  paths = ["."]
+  paths = ["onnion/"]
