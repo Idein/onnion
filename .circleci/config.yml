@@ -64,19 +64,6 @@ jobs:
           command: |
             poetry run pysen run lint
 
-  legacy-test:
-    docker:
-      - image: *onnion-ci-base-image
-        auth: *docker-hub-auth
-    steps:
-      - checkout
-      - poetry-install:
-          dir: runtime
-      - run:
-          name: Test onnion-rt
-          working_directory: runtime
-          command: poetry run pytest -v legacy_tests
-
   test-on-x86:
     docker:
       - image: *onnion-ci-base-image
@@ -195,9 +182,6 @@ workflows:
   commit:
     jobs:
       - lint:
-          context:
-            - docker-hub-creds
-      - legacy-test:
           context:
             - docker-hub-creds
       - test-on-x86:
