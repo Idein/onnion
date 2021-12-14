@@ -6,7 +6,7 @@ authors = ["Idein Inc."]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-onnigiri = "^0.1.1"
+onnigiri = "^0.3.0"
 onnion = {path = "../compiler", develop = true}
 onnion-rt = {path = "../runtime", develop = true}
 onnx2json = "^1.0.0"
