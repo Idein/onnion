@@ -99,6 +99,8 @@ This runtime supports only below operators.
 - IsInf
 - IsNaN
 - LeakyRelu
+- Less
+  - must be from opsetversion >= 7
 - Loop
 - Mul
   - must be from opsetversion >= 7
