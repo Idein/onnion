@@ -57,6 +57,7 @@ from .leakyrelu import LeakyRelu  # noqa: F401
 from .less import Less  # noqa: F401
 from .lessorequal import LessOrEqual  # noqa: F401
 from .log import Log  # noqa: F401
+from .logsoftmax import LogSoftmax  # noqa: F401
 from .loop import Loop  # noqa: F401
 from .mul import Mul  # noqa: F401
 from .nonmaxsuppression import NonMaxSuppression  # noqa: F401
