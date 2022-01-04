@@ -101,6 +101,7 @@ This runtime supports only below operators.
 - LeakyRelu
 - Less
   - must be from opsetversion >= 7
+- LessOrEqual
 - Loop
 - Mul
   - must be from opsetversion >= 7
