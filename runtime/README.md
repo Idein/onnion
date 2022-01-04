@@ -102,6 +102,7 @@ This runtime supports only below operators.
 - Less
   - must be from opsetversion >= 7
 - LessOrEqual
+- Log
 - Loop
 - Mul
   - must be from opsetversion >= 7
