@@ -59,6 +59,7 @@ from .lessorequal import LessOrEqual  # noqa: F401
 from .log import Log  # noqa: F401
 from .logsoftmax import LogSoftmax  # noqa: F401
 from .loop import Loop  # noqa: F401
+from .matmul import MatMul  # noqa: F401
 from .mul import Mul  # noqa: F401
 from .nonmaxsuppression import NonMaxSuppression  # noqa: F401
 from .nonzero import NonZero  # noqa: F401
