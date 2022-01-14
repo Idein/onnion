@@ -11,7 +11,8 @@ class Max:
     def run(self, *xs):
         if len(xs) < 1:
             raise RunError("Max", self.version)
-        elif len(xs) == 1:
-            return [xs[0]]
         else:
-            return [np.maximum(*xs)]
+            acc = xs[0]
+            for x in xs[1:]:
+                acc = np.maximum(acc, x)
+            return [acc]

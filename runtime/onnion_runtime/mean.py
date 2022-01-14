@@ -10,8 +10,6 @@ class Mean:
         n = len(xs)
         if n < 1:
             raise RunError("Mean", self.version)
-        elif n == 1:
-            return [xs[0]]
         else:
             acc = xs[0]
             for x in xs[1:]:
