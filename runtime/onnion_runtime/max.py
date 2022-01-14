@@ -12,6 +12,6 @@ class Max:
         if len(xs) < 1:
             raise RunError("Max", self.version)
         elif len(xs) == 1:
-            return xs
+            return [xs[0]]
         else:
             return [np.maximum(*xs)]
