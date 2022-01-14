@@ -11,8 +11,6 @@ class Max:
     def run(self, *xs):
         if len(xs) < 1:
             raise RunError("Max", self.version)
-        elif len(xs) == 1:
-            return [xs[0]]
         else:
             acc = xs[0]
             for x in xs[1:]:
