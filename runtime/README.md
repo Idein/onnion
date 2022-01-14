@@ -106,6 +106,7 @@ This runtime supports only below operators.
 - LogSoftmax
 - Loop
 - MatMul
+- MatMulInteger
 - Mul
   - must be from opsetversion >= 7
 - NonMaxSuppression
