@@ -1,0 +1,17 @@
+import numpy as np
+
+from .error import RunError
+
+
+class Max:
+    def __init__(self, opset_version, **kwargs):
+        self.version = opset_version
+        self.consumed_inputs = kwargs.get("consumed_inputs")
+
+    def run(self, *xs):
+        if len(xs) < 1:
+            raise RunError("Max", self.version)
+        elif len(xs) == 1:
+            return xs
+        else:
+            return [np.maximum(*xs)]

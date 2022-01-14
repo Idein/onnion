@@ -107,6 +107,7 @@ This runtime supports only below operators.
 - Loop
 - MatMul
 - MatMulInteger
+- Max
 - Mul
   - must be from opsetversion >= 7
 - NonMaxSuppression
