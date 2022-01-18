@@ -110,6 +110,7 @@ This runtime supports only below operators.
 - Max
 - Mean
 - Min
+- Mod
 - Mul
   - must be from opsetversion >= 7
 - NonMaxSuppression
