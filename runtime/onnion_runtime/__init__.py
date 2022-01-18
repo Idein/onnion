@@ -63,6 +63,7 @@ from .matmul import MatMul  # noqa: F401
 from .matmulinteger import MatMulInteger  # noqa: F401
 from .max import Max  # noqa: F401
 from .mean import Mean  # noqa: F401
+from .min import Min  # noqa: F401
 from .mul import Mul  # noqa: F401
 from .nonmaxsuppression import NonMaxSuppression  # noqa: F401
 from .nonzero import NonZero  # noqa: F401
