@@ -117,6 +117,7 @@ This runtime supports only below operators.
 - NegativeLogLikelihoodLoss
 - NonMaxSuppression
 - NonZero
+- Not
 - Pad
 - Range
 - ReduceMax
