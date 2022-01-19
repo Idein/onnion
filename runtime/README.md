@@ -114,6 +114,7 @@ This runtime supports only below operators.
 - Mul
   - must be from opsetversion >= 7
 - Neg
+- NegativeLogLikelihoodLoss
 - NonMaxSuppression
 - NonZero
 - Pad
