@@ -66,6 +66,7 @@ from .mean import Mean  # noqa: F401
 from .min import Min  # noqa: F401
 from .mod import Mod  # noqa: F401
 from .mul import Mul  # noqa: F401
+from .neg import Neg  # noqa: F401
 from .nonmaxsuppression import NonMaxSuppression  # noqa: F401
 from .nonzero import NonZero  # noqa: F401
 from .pad import Pad  # noqa: F401
