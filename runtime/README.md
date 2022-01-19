@@ -113,6 +113,7 @@ This runtime supports only below operators.
 - Mod
 - Mul
   - must be from opsetversion >= 7
+- Neg
 - NonMaxSuppression
 - NonZero
 - Pad
