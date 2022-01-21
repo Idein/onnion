@@ -118,6 +118,7 @@ This runtime supports only below operators.
 - NonMaxSuppression
 - NonZero
 - Not
+- OneHot
 - Pad
 - Range
 - ReduceMax
