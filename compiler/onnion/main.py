@@ -141,7 +141,10 @@ def gen_run_body(
                 sub_graphs = [f'self.sub_graphs["{n}"]' for n in sub_graph_names]
                 op_args.append(f"{a.name}={sub_graphs}")
             else:
-                assert f"Error: Not support the attributes in the node {n}"
+                if force:
+                    print(f"Warning: Ignore unknown attribute '{a.name}' in the node:\n{n}", file=sys.stderr)
+                else:
+                    sys.exit(f"Error: Not support the attributes in the node:\n{n}")
         args = ", ".join(op_args)
 
         if not rt.is_supported(n.op_type):
