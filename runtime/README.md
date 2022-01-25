@@ -121,6 +121,7 @@ This runtime supports only below operators.
 - OneHot
 - Or
   - must be from opsetversion >= 7
+- PRelu
 - Pad
 - Range
 - ReduceMax
