@@ -123,6 +123,8 @@ This runtime supports only below operators.
   - must be from opsetversion >= 7
 - PRelu
 - Pad
+- Pow
+  - must be from opsetversion >= 7
 - Range
 - ReduceMax
 - ReduceMin
