@@ -72,6 +72,7 @@ from .nonmaxsuppression import NonMaxSuppression  # noqa: F401
 from .nonzero import NonZero  # noqa: F401
 from .not_ import Not  # noqa: F401
 from .onehot import OneHot  # noqa: F401
+from .or_ import Or  # noqa: F401
 from .pad import Pad  # noqa: F401
 from .range import Range  # noqa: F401
 from .reducemax import ReduceMax  # noqa: F401
