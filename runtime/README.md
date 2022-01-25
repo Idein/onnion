@@ -119,6 +119,8 @@ This runtime supports only below operators.
 - NonZero
 - Not
 - OneHot
+- Or
+  - must be from opsetversion >= 7
 - Pad
 - Range
 - ReduceMax
