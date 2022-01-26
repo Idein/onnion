@@ -79,6 +79,7 @@ from .prelu import PRelu  # noqa: F401
 from .randomnormal import RandomNormal  # noqa: F401
 from .randomnormallike import RandomNormalLike  # noqa: F401
 from .randomuniform import RandomUniform  # noqa: F401
+from .randomuniformlike import RandomUniformLike  # noqa: F401
 from .range import Range  # noqa: F401
 from .reducemax import ReduceMax  # noqa: F401
 from .reducemin import ReduceMin  # noqa: F401
