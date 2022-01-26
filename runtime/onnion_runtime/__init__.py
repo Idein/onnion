@@ -81,6 +81,7 @@ from .randomnormallike import RandomNormalLike  # noqa: F401
 from .randomuniform import RandomUniform  # noqa: F401
 from .randomuniformlike import RandomUniformLike  # noqa: F401
 from .range import Range  # noqa: F401
+from .reciprocal import Reciprocal  # noqa: F401
 from .reducemax import ReduceMax  # noqa: F401
 from .reducemin import ReduceMin  # noqa: F401
 from .reshape import Reshape  # noqa: F401

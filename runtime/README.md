@@ -130,6 +130,7 @@ This runtime supports only below operators.
 - RandomUniform
 - RandomUniformLike
 - Range
+- Reciprocal
 - ReduceMax
 - ReduceMin
 - Reshape
