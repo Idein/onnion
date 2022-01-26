@@ -128,6 +128,7 @@ This runtime supports only below operators.
 - RandomNormal
 - RandomNormalLike
 - RandomUniform
+- RandomUniformLike
 - Range
 - ReduceMax
 - ReduceMin
