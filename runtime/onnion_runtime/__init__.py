@@ -76,6 +76,7 @@ from .or_ import Or  # noqa: F401
 from .pad import Pad  # noqa: F401
 from .pow import Pow  # noqa: F401
 from .prelu import PRelu  # noqa: F401
+from .randomnormal import RandomNormal  # noqa: F401
 from .range import Range  # noqa: F401
 from .reducemax import ReduceMax  # noqa: F401
 from .reducemin import ReduceMin  # noqa: F401

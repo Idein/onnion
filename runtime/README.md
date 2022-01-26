@@ -125,6 +125,7 @@ This runtime supports only below operators.
 - Pad
 - Pow
   - must be from opsetversion >= 7
+- RandomNormal
 - Range
 - ReduceMax
 - ReduceMin
