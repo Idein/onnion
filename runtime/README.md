@@ -134,6 +134,7 @@ This runtime supports only below operators.
 - ReduceL1
 - ReduceL2
 - ReduceLogSum
+- ReduceLogSumExp
 - ReduceMax
 - ReduceMin
 - Reshape
