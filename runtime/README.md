@@ -131,6 +131,7 @@ This runtime supports only below operators.
 - RandomUniformLike
 - Range
 - Reciprocal
+- ReduceL1
 - ReduceMax
 - ReduceMin
 - Reshape
