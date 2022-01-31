@@ -133,6 +133,7 @@ This runtime supports only below operators.
 - Reciprocal
 - ReduceL1
 - ReduceL2
+- ReduceLogSum
 - ReduceMax
 - ReduceMin
 - Reshape
