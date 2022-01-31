@@ -87,6 +87,7 @@ from .reducel2 import ReduceL2  # noqa: F401
 from .reducelogsum import ReduceLogSum  # noqa: F401
 from .reducelogsumexp import ReduceLogSumExp  # noqa: F401
 from .reducemax import ReduceMax  # noqa: F401
+from .reducemean import ReduceMean  # noqa: F401
 from .reducemin import ReduceMin  # noqa: F401
 from .reshape import Reshape  # noqa: F401
 from .round import Round  # noqa: F401

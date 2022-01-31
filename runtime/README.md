@@ -136,6 +136,7 @@ This runtime supports only below operators.
 - ReduceLogSum
 - ReduceLogSumExp
 - ReduceMax
+- ReduceMean
 - ReduceMin
 - Reshape
 - Round
