@@ -84,6 +84,7 @@ from .range import Range  # noqa: F401
 from .reciprocal import Reciprocal  # noqa: F401
 from .reducel1 import ReduceL1  # noqa: F401
 from .reducel2 import ReduceL2  # noqa: F401
+from .reducelogsum import ReduceLogSum  # noqa: F401
 from .reducemax import ReduceMax  # noqa: F401
 from .reducemin import ReduceMin  # noqa: F401
 from .reshape import Reshape  # noqa: F401
