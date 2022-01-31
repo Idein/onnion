@@ -132,6 +132,7 @@ This runtime supports only below operators.
 - Range
 - Reciprocal
 - ReduceL1
+- ReduceL2
 - ReduceMax
 - ReduceMin
 - Reshape
