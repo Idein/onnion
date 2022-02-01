@@ -140,6 +140,7 @@ This runtime supports only below operators.
 - ReduceMin
 - ReduceProd
 - ReduceSum
+- ReduceSumSquare
 - Reshape
 - Round
 - ScatterND
