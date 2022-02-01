@@ -138,6 +138,7 @@ This runtime supports only below operators.
 - ReduceMax
 - ReduceMean
 - ReduceMin
+- ReduceProd
 - Reshape
 - Round
 - ScatterND
