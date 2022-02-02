@@ -141,6 +141,7 @@ This runtime supports only below operators.
 - ReduceProd
 - ReduceSum
 - ReduceSumSquare
+- Relu
 - Reshape
 - Round
 - ScatterND
