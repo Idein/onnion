@@ -96,6 +96,7 @@ from .reducesum import ReduceSum  # noqa: F401
 from .reducesumsquare import ReduceSumSquare  # noqa: F401
 from .relu import Relu  # noqa: F401
 from .reshape import Reshape  # noqa: F401
+from .resize import Resize  # noqa: F401
 from .round import Round  # noqa: F401
 from .scatternd import ScatterND  # noqa: F401
 from .shape import Shape  # noqa: F401
