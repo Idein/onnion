@@ -36,7 +36,9 @@ def on_arm32():
 
 
 def _load_data(f, vs):
-    if type(vs) == list:
+    if vs is None:
+        return None
+    elif type(vs) == list:
         res = []
         for v in vs:
             res.append(_load_data(f, v))
@@ -53,7 +55,9 @@ def load_test_data(file_name, vs):
 
 
 def _save_data(f, vs):
-    if type(vs) == list:
+    if vs is None:
+        pass
+    elif type(vs) == list:
         for v in vs:
             _save_data(f, v)
     else:
@@ -99,7 +103,12 @@ def check_by_onnxruntime(
 ) -> List[Union[np.array, List[np.array]]]:
     assert not WITHOUT_ONNXRUNTIME
 
-    input_names = [f"input{i}" for i, _ in enumerate(input_values)]
+    input_names = []
+    for i, v in enumerate(input_values):
+        if v is None:
+            input_names.append("")
+        else:
+            input_names.append(f"input{i}")
     output_names = [f"output{i}" for i, _ in enumerate(output_values)]
     if op_name in ["Constant", "ConstantOfShape"]:
         attrs["value"] = numpy_helper.from_array(attrs["value"])
@@ -112,7 +121,9 @@ def check_by_onnxruntime(
 
     input_tensors = []
     for n, v in zip(input_names, input_values):
-        if type(v) == list:
+        if v is None:
+            pass
+        elif type(v) == list:
             input_tensors.append(helper.make_tensor_sequence_value_info(n, _convert_type(v[0].dtype), list(v[0].shape)))
         else:
             input_tensors.append(helper.make_tensor_value_info(n, _convert_type(v.dtype), list(v.shape)))
@@ -130,7 +141,8 @@ def check_by_onnxruntime(
 
     inputs = dict()
     for n, v in zip(input_names, input_values):
-        inputs[n] = v
+        if v is not None:
+            inputs[n] = v
     results = _run_onnx(model, inputs, output_names)
 
     check_by_data(results, output_values, max_error)
