@@ -1,7 +1,7 @@
 .PHONY: check clean
 
 ssd-10.onnx:
-	wget -O $@ https://github.com/onnx/models/raw/master/vision/object_detection_segmentation/ssd/model/ssd-10.onnx
+	wget -O $@ https://github.com/onnx/models/raw/main/vision/object_detection_segmentation/ssd/model/ssd-10.onnx
 
 ssd-10-post.onnx: ssd-10.onnx
 	onnigiri $^ -o $@ --from Transpose_472 Transpose_661 --to bboxes labels scores

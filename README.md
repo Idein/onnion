@@ -3,10 +3,10 @@
 - compile onnx to python
 - runtime depends only numpy
 
-See [supported operators](https://github.com/Idein/onnion/tree/master/runtime#supported-operators).
+See [supported operators](https://github.com/Idein/onnion/tree/main/runtime#supported-operators).
 
 ## Tutorial
-Extract the post-process of [Ultraface](https://github.com/onnx/models/tree/master/vision/body_analysis/ultraface) and run it.
+Extract the post-process of [Ultraface](https://github.com/onnx/models/tree/main/vision/body_analysis/ultraface) and run it.
 
 Install tools:
 
@@ -17,7 +17,7 @@ $ pip3 install onnigiri onnion onnion-rt
 Download the onnx file:
 
 ```
-$ wget -O ultraface.onnx 'https://github.com/onnx/models/raw/master/vision/body_analysis/ultraface/models/version-RFB-640.onnx'
+$ wget -O ultraface.onnx 'https://github.com/onnx/models/raw/main/vision/body_analysis/ultraface/models/version-RFB-640.onnx'
 ```
 
 Extract the post-process:
