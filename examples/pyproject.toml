@@ -10,6 +10,7 @@ onnigiri = "^0.3.0"
 onnion = {path = "../compiler", develop = true}
 onnion-rt = {path = "../runtime", develop = true}
 onnx2json = "^1.0.0"
+onnxruntime = "^1.8.1"
 json2onnx = "^1.0.0"
 
 [tool.poetry.dev-dependencies]
