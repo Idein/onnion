@@ -21,7 +21,7 @@ class Split:
             raise RunError("Split", self.version)  # unsuported
 
         if sum(split) != x.shape[self.axis]:
-            raise RunError("Split", self.version)  # unsuported
+            raise RunError("Split", self.version)
 
         if len(split) == 1:
             return [x]
