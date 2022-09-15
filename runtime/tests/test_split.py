@@ -60,3 +60,15 @@ def test_split_04():
     inputs = [x]
 
     check(Split, opset_version, attrs, inputs)
+
+
+def test_split_05():
+    opset_version = 7
+    axis = 2
+    split = [12]
+    attrs = {"axis": axis, "split": split}
+
+    x = np.random.randn(1, 3, 12, 20).astype(np.float32)
+    inputs = [x]
+
+    check(Split, opset_version, attrs, inputs)

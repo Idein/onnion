@@ -24,7 +24,7 @@ class Split:
             raise RunError("Split", self.version)
 
         if len(split) == 1:
-            return [x]
+            return [np.copy(x)]
         else:
             indices = np.cumsum(split)[:-1]
             output = np.split(x, indices_or_sections=indices, axis=self.axis)
