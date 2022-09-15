@@ -148,6 +148,8 @@ This runtime supports only below operators.
 - Shape
 - Sigmoid
 - Slice
+- Split
+  - argument `split` must be specified
 - Squeeze
 - Sub
   - must be from opsetversion >= 7
