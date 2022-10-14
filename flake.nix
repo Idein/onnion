@@ -57,6 +57,7 @@
         devShell = pkgs.mkShell {
           buildInputs = [
             pkgs.protobuf
+            pkgs.zlib
 
             py
             py.pkgs.jedi-language-server
@@ -64,7 +65,7 @@
           ];
 
           shellHook = ''
-            export LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.stdenv.cc.cc ]}
+            export LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.stdenv.cc.cc pkgs.zlib ]}
           '';
         };
       }
