@@ -3,7 +3,7 @@
 - compile onnx to python
 - runtime depends only numpy
 
-See [supported operators](https://github.com/Idein/onnion/tree/main/runtime#supported-operators).
+See [supported operators](https://github.com/Idein/onnion/tree/master/runtime#supported-operators).
 
 ## Tutorial
 Extract the post-process of [Ultraface](https://github.com/onnx/models/tree/main/vision/body_analysis/ultraface) and run it.
