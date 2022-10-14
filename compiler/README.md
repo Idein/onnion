@@ -1,10 +1,20 @@
 # onnion
 
 ## Installation
+From [PyPI](https://pypi.org/project/onnion/):
 
 ```
 $ pip3 install onnion
 ```
+
+From [Dockerhub](https://hub.docker.com/repository/docker/idein/onnion):
+
+```
+docker pull idein/onnion:YYYYMMDD # YYYYMMDD is released date.
+or
+docker pull idein/onnion:latest
+```
+
 
 ## Usage
 
@@ -15,6 +25,12 @@ $ python
 >>> graph = init_graph()
 >>> inputs = ... # List[np.array]
 >>> outputs = graph.run(*inputs)
+```
+
+With docker:
+
+```
+$ docker run --rm -it -u $UID:$GID -v $(pwd):/work idein/onnion:latest ssd-10-post.onnx -o ssd_post_model.py
 ```
 
 The order of the inputs and the outputs in the `run` method corresponds to the order of the inputs and the outputs in the onnx graph.
