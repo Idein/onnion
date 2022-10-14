@@ -126,6 +126,61 @@ jobs:
           command: |
             poetry run make -C ssd check
 
+  build-dockerimage:
+    parameters:
+      release:
+        type: boolean
+    docker:
+      - image: nixos/nix:2.8.1
+        auth: &docker-hub-auth
+          username: $DOCKER_USER
+          password: $DOCKER_PASS
+    environment:
+      TZ: "JST-9"
+    steps:
+      - checkout
+      - run:
+          name: Build docker image
+          command: |
+            nix --experimental-features 'nix-command flakes' build '.#dockerimage' -o image -L
+      - setup_remote_docker:
+          version: 20.10.7
+      - run:
+          name: Install docker client
+          command: |
+            nix-env -iA nixpkgs.docker-client
+      - docker-login
+      - run:
+          name: Load image
+          command: |
+            docker load < ./image
+      - when:
+          condition: << parameters.release >>
+          steps:
+            - run:
+                name: Change image tag
+                command: |
+                  docker tag idein/onnion:latest idein/onnion:$(date +%Y%m%d)
+                  docker images
+            - run:
+                name: Push image
+                command: |
+                  docker push idein/onnion:latest
+                  docker push idein/onnion:$(date +%Y%m%d)
+      - unless:
+          condition: << parameters.release >>
+          steps:
+            - run:
+                name: Change image tag
+                command: |
+                  docker tag idein/onnion:latest idein/onnion:build-${CIRCLE_BUILD_NUM}
+                  docker images
+            - run:
+                name: Push image
+                command: |
+                  docker push idein/onnion:latest
+                  docker push idein/onnion:build-${CIRCLE_BUILD_NUM}
+
   validate-version-with-tag:
     parameters:
       dir:
@@ -195,6 +250,10 @@ workflows:
       - test-by-examples:
           context:
             - docker-hub-creds
+      - build-dockerimage:
+          release: false
+          context:
+            - docker-hub-creds
 
   release-onnion:
     jobs:
@@ -203,7 +262,7 @@ workflows:
           package-name: onnion
           context:
             - docker-hub-creds
-          filters: &release-filter
+          filters: &onnion-release-filter
             tags:
               only: /^onnion-[0-9]+(\.[0-9]+){2}((a|b|rc)[0-9]+)?(.post[0-9])?(.dev[0-9])?$/
             branches:
@@ -213,7 +272,14 @@ workflows:
             - docker-hub-creds
           requires:
             - validate-version-with-tag
-          filters: *release-filter
+          filters: *onnion-release-filter
+      - build-dockerimage:
+          release: true
+          context:
+            - docker-hub-creds
+          requires:
+            - validate-version-with-tag
+          filters: *onnion-release-filter
 
   release-onnion-rt:
     jobs:
@@ -222,7 +288,7 @@ workflows:
           package-name: onnion-rt
           context:
             - docker-hub-creds
-          filters: &release-filter
+          filters: &onnion-rt-release-filter
             tags:
               only: /^onnion-rt-[0-9]+(\.[0-9]+){2}((a|b|rc)[0-9]+)?(.post[0-9])?(.dev[0-9])?$/
             branches:
@@ -232,4 +298,11 @@ workflows:
             - docker-hub-creds
           requires:
             - validate-version-with-tag
-          filters: *release-filter
+          filters: *onnion-rt-release-filter
+      - build-dockerimage:
+          release: true
+          context:
+            - docker-hub-creds
+          requires:
+            - validate-version-with-tag
+          filters: *onnion-rt-release-filter
