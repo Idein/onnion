@@ -1,14 +1,14 @@
 {
   description = "onnion";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
     flake-utils.url = "github:numtide/flake-utils";
   };
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        py = pkgs.python38;
+        py = pkgs.python39;
         customOverrides = self: super: {
           platformdirs = super.platformdirs.overridePythonAttrs (
             old: {
@@ -39,6 +39,18 @@
           );
           preferWheels = true;
         };
+
+        packages.dockerimage = pkgs.dockerTools.buildImage {
+          name = "idein/onnion";
+          tag = "latest";
+          created = "now";
+          contents = [ self.packages.${system}.onnion ];
+          config = {
+            Entrypoint = [ "/bin/onnion" ];
+            WorkingDir = "/work";
+          };
+        };
+
 
         defaultPackage = self.packages.${system}.onnion;
 
