@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "onnion-rt"
-version = "0.6.0"
+version = "0.6.1"
 description = "run onnx with only numpy"
 authors = ["Idein Inc."]
 license = "Apache-2.0"
@@ -15,8 +15,8 @@ packages = [
 python = "^3.6.2"
 # use numpy that has whl for 32bit arm.
 numpy = [
-    {version = "^1.19.0, < 1.21.5", python = "< 3.8"},
-    {version = "^1.19.0", python = ">= 3.8"}
+    {version = "^1.19.5, < 1.21.5", python = "< 3.8"},
+    {version = "^1.19.5", python = ">= 3.8"}
 ]
 
 [tool.poetry.dev-dependencies]
