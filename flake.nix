@@ -1,7 +1,7 @@
 {
   description = "onnion";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
     flake-utils.url = "github:numtide/flake-utils";
   };
   outputs = { self, nixpkgs, flake-utils }:
@@ -44,7 +44,7 @@
           name = "idein/onnion";
           tag = "latest";
           created = "now";
-          contents = [ self.packages.${system}.onnion ];
+          copyToRoot = [ self.packages.${system}.onnion ];
           config = {
             Entrypoint = [ "/bin/onnion" ];
             WorkingDir = "/work";
