@@ -1,0 +1,19 @@
+name: update-nix-flake
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 毎月10日に起動
+    - cron: '0 0 10 * *'
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  call-nix-flake-updater:
+    uses: ishiy1993/nix-flake-updater/.github/workflows/nix-flake-updater.yml@v0
+    with:
+      base_branch: master
+      timezone: JST-9
+      reviewer: ishiy1993
