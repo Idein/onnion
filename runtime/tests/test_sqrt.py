@@ -13,6 +13,7 @@ def test_relu_00():
 
     check(Sqrt, opset_version, attrs, inputs)
 
+
 def test_relu_01():
     opset_version = 14
     attrs = dict()
