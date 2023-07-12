@@ -4,7 +4,7 @@ from onnion_runtime import Sqrt
 from .utils import check
 
 
-def test_relu_00():
+def test_sqrt_00():
     opset_version = 14
     attrs = dict()
 
@@ -14,7 +14,7 @@ def test_relu_00():
     check(Sqrt, opset_version, attrs, inputs)
 
 
-def test_relu_01():
+def test_sqrt_01():
     opset_version = 14
     attrs = dict()
 
