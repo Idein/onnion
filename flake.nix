@@ -7,7 +7,7 @@
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = nixpkgs.legacyPackages.${system};
+        pkgs = import nixpkgs { inherit system; };
         py = pkgs.python39;
         customOverrides = self: super: {
           platformdirs = super.platformdirs.overridePythonAttrs (

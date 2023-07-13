@@ -100,6 +100,7 @@ from .shape import Shape  # noqa: F401
 from .sigmoid import Sigmoid  # noqa: F401
 from .slice import Slice  # noqa: F401
 from .split import Split  # noqa: F401
+from .sqrt import Sqrt  # noqa: F401
 from .squeeze import Squeeze  # noqa: F401
 from .sub import Sub  # noqa: F401
 from .tile import Tile  # noqa: F401

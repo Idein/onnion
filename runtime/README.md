@@ -150,6 +150,7 @@ This runtime supports only below operators.
 - Slice
 - Split
   - argument `split` must be specified
+- Sqrt
 - Squeeze
 - Sub
   - must be from opsetversion >= 7
