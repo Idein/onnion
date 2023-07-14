@@ -99,6 +99,7 @@ from .scatternd import ScatterND  # noqa: F401
 from .shape import Shape  # noqa: F401
 from .sigmoid import Sigmoid  # noqa: F401
 from .slice import Slice  # noqa: F401
+from .softmax import Softmax  # noqa: F401
 from .split import Split  # noqa: F401
 from .sqrt import Sqrt  # noqa: F401
 from .squeeze import Squeeze  # noqa: F401

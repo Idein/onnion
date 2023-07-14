@@ -148,6 +148,7 @@ This runtime supports only below operators.
 - Shape
 - Sigmoid
 - Slice
+- Softmax
 - Split
   - argument `split` must be specified
 - Sqrt
