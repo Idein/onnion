@@ -50,6 +50,8 @@ This runtime supports only below operators.
 - Asinh
 - Atan
 - Atanh
+- BatchNorm
+  - must be from opsetversion >= ?
 - BitShift
 - Cast
   - must be from opsetversion >= 6
