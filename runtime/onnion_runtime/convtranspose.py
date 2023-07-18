@@ -28,11 +28,17 @@ class ConvTranspose:
         self.strides = kwargs.get("strides", None)
 
     def run(self, x: np.ndarray, W: np.ndarray, b: Optional[np.ndarray] = None) -> List[np.ndarray]:
-        # x: [batch, in_ch, in_h, in_w]
-        # W: [in_ch, out_ch/group, kernel_h, kernel_w]
-        # b: [out_ch]
+        """
+        2D Convolution Transpose
+        input shapes:
+            x: [batch, in_ch, in_h, in_w]
+            W: [in_ch, out_ch/group, kernel_h, kernel_w]
+            b: [out_ch]
+        output shape:
+            [batch, out_ch, out_h, out_w]
+        """
 
-        # fix parameters
+        # define parameters
         dim = len(x.shape) - 2
         group = self.group or 1
         batch = x.shape[0]
@@ -40,30 +46,44 @@ class ConvTranspose:
         out_ch = W.shape[1]
         dilations = self.dilations or [1] * dim
         strides = self.strides or [1] * dim
-        pads = self.pads or [0] * (dim * 2)
         output_padding = self.output_padding or [0] * dim
         kernel_shape = self.kernel_shape or W.shape[2:]
         input_shape = x.shape[2:]
+        pads = self.pads or [0] * (dim * 2)
 
-        # check parameters
         if dim != 2:
             raise RunError("ConvTranspose", self.version, "support 2d only")
 
         if group != 1:
             raise RunError("ConvTranspose", self.version, "support group=1 only")
 
+        if self.auto_pad != "NOTSET":
+            raise RunError("ConvTranspose", self.version, "support auto_pad=NOTSET only")
+
+        # calculate pads and output_shape
         if self.output_shape is not None:
-            raise RunError("ConvTranspose", self.version, "do not support ouput_shape")
+            output_shape = self.output_shape
+            total_padding = [
+                strides[i] * (input_shape[i] - 1)
+                + output_padding[i]
+                + ((kernel_shape[i] - 1) * dilations[i] + 1)
+                - output_shape[i]
+                for i in range(len(input_shape))
+            ]
+            for i in range(len(input_shape)):
+                pads[i] = total_padding[i] - (total_padding[i] // 2)
+                pads[i + dim] = total_padding[i] // 2
+        else:
+            output_shape = [
+                strides[i] * (input_shape[i] - 1)
+                + output_padding[i]
+                + ((kernel_shape[i] - 1) * dilations[i] + 1)
+                - pads[i]
+                - pads[i + dim]
+                for i in range(dim)
+            ]
 
-        output_shape = [
-            strides[i] * (input_shape[i] - 1)
-            + output_padding[i]
-            + ((kernel_shape[i] - 1) * dilations[i] + 1)
-            - pads[i]
-            - pads[i + dim]
-            for i in range(dim)
-        ]
-
+        # calculate output
         result = np.zeros([batch, out_ch, *output_shape], dtype=x.dtype)
 
         for n in range(batch):
