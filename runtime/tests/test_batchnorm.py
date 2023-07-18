@@ -4,7 +4,7 @@ from onnion_runtime import BatchNormalization
 from .utils import check
 
 def test_batchnorm_00():
-    opset_version = 15
+    opset_version = 14
     attrs = dict()
 
     # input size: (2, 3, 4, 5)

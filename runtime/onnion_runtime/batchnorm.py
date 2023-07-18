@@ -5,7 +5,7 @@ class BatchNormalization:
         self.version = opset_version
         self.epsilon = kwargs.get("epsilon", 1e-5)
         training_mode = kwargs.get("training_mode", 0)
-        assert self.version >= 15, f"Now, only opset_versions (>= 15) are supported"
+        assert self.version >= 14, f"Now, only opset_versions (>= 14) are supported"
         assert training_mocde == 0, 'Non-zero values for training_mode are not supported'
 
     def run(self, x, scale, bias, input_mean, input_var):
