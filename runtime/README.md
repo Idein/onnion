@@ -61,6 +61,10 @@ This runtime supports only below operators.
 - ConcatFromSequence
 - Constant
 - ConstantOfShape
+- ConvTranspose
+  - support 2d only
+  - `group` should be 1
+  - `auto_pad` should be `NONE` or `"NOTSET"`
 - Cos
 - Cosh
 - DepthToSpace
