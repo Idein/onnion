@@ -3,9 +3,10 @@ import numpy as np
 class BatchNormalization:
     def __init__(self, opset_version, **kwargs):
         self.version = opset_version
-        assert self.version >= 15, f"Now, only opset_versions (>= 15) are supported"
         self.epsilon = kwargs.get("epsilon", 1e-5)
-        assert 0 == kwargs.get("training_mode", 0), 'Non-zero values for training_mode are not supported'
+        training_mode = kwargs.get("training_mode", 0)
+        assert self.version >= 15, f"Now, only opset_versions (>= 15) are supported"
+        assert training_mocde == 0, 'Non-zero values for training_mode are not supported'
 
     def run(self, x, scale, bias, input_mean, input_var):
         """
