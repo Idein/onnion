@@ -1,4 +1,5 @@
 import numpy as np
+from .error import RunError
 
 
 class BatchNormalization:
@@ -7,8 +8,12 @@ class BatchNormalization:
         self.epsilon = kwargs.get("epsilon", 1e-5)
         if 14 <= self.version:
             training_mode = kwargs.get("training_mode", 0)
-            assert training_mode == 0, "Non-zero values for training_mode are not supported"
-        assert 9 <= self.version, "Now, only opset_versions (>= 9) are supported"
+            if training_mode != 0:
+                # Non-zero values for training_mode are not supported
+                raise RunError("BatchNormalization", self.version)
+
+        # only opset_versions (>= 9) are supported
+        raise RunError("BatchNormalization", self.version)
 
     def run(self, x, scale, bias, input_mean, input_var):
         """
