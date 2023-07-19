@@ -10,7 +10,7 @@ import numpy as np
 try:
     import onnx
     import onnxruntime
-    from onnx import checker, helper, mapping, numpy_helper
+    from onnx import checker, helper, numpy_helper
 
     WITHOUT_ONNXRUNTIME = False
 except Exception:
@@ -24,7 +24,7 @@ def on_arm32():
         result = bool(int(os.environ["ONNION_TEST_ON_ARM32"]))
     except Exception:
         arch = platform.machine()
-        if arch == "x86_64":
+        if arch == "x86_64" or arch == "arm64":
             result = False
         elif arch == "armv7l":
             result = True
@@ -81,7 +81,7 @@ def check_by_data(expected, result, max_error=1e-4):
 
 def _convert_type(dtype):
     assert not WITHOUT_ONNXRUNTIME
-    return mapping.NP_TYPE_TO_TENSOR_TYPE[dtype]
+    return helper.np_dtype_to_tensor_dtype(dtype)
 
 
 def _run_onnx(model, inputs, output_names):
