@@ -40,7 +40,7 @@ class ConvTranspose:
 
         # define parameters
         dim = len(x.shape) - 2
-        group = self.group or 1
+        group = self.group
         batch = x.shape[0]
         in_ch = x.shape[1]
         out_ch = W.shape[1]
