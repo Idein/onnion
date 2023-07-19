@@ -64,7 +64,7 @@ This runtime supports only below operators.
 - ConvTranspose
   - support 2d only
   - `group` should be 1
-  - `auto_pad` should be `NONE` or `"NOTSET"`
+  - `auto_pad` should be `"NOTSET"` (default value)
 - Cos
 - Cosh
 - DepthToSpace
