@@ -3,6 +3,7 @@ from onnion_runtime import BatchNormalization
 
 from .utils import check
 
+
 def test_batchnormalization_00():
     opset_version = 9
     attrs = dict()
@@ -16,5 +17,3 @@ def test_batchnormalization_00():
 
     inputs = [x, s, bias, mean, var]
     check(BatchNormalization, opset_version, attrs, inputs)
-
-
