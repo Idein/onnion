@@ -8,7 +8,7 @@ from .error import RunError
 # https://github.com/onnx/onnx/blob/main/docs/Operators.md#ConvTranspose
 class ConvTranspose:
     auto_pad: str
-    group: Optional[int]
+    group: int
     dilations: Optional[List[int]]
     strides: Optional[List[int]]
     kernel_shape: Optional[List[int]]
@@ -20,7 +20,7 @@ class ConvTranspose:
         self.version = opset_version
         self.auto_pad = kwargs.get("auto_pad", "NOTSET")
         self.dilations = kwargs.get("dilations", None)
-        self.group = kwargs.get("group", None)
+        self.group = kwargs.get("group", 1)
         self.kernel_shape = kwargs.get("kernel_shape", None)
         self.output_padding = kwargs.get("output_padding", None)
         self.output_shape = kwargs.get("output_shape", None)
