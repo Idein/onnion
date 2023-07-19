@@ -3,7 +3,7 @@ from onnion_runtime import BatchNormalization
 
 from .utils import check
 
-def test_batchnorm_00():
+def test_batchnormalization_00():
     opset_version = 9
     attrs = dict()
 
