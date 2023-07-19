@@ -63,6 +63,10 @@ This runtime supports only below operators.
 - ConcatFromSequence
 - Constant
 - ConstantOfShape
+- ConvTranspose
+  - support 2d only
+  - `group` should be 1
+  - `auto_pad` should be `"NOTSET"` (default value)
 - Cos
 - Cosh
 - DepthToSpace
@@ -150,6 +154,7 @@ This runtime supports only below operators.
 - Shape
 - Sigmoid
 - Slice
+- Softmax
 - Split
   - argument `split` must be specified
 - Sqrt

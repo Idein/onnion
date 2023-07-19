@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "onnion-rt"
-version = "0.6.1"
+version = "0.7.0"
 description = "run onnx with only numpy"
 authors = ["Idein Inc."]
 license = "Apache-2.0"
@@ -12,7 +12,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6.2"
+python = "^3.7"
 # use numpy that has whl for 32bit arm.
 numpy = [
     {version = "^1.19.5, < 1.21.5", python = "< 3.8"},
@@ -25,7 +25,7 @@ black = "22.3.0"
 flake8 = "4.0.1"
 flake8-bugbear = "21.9.2"
 isort = "5.9.3"
-mypy = "0.812"
+mypy = "^1.0"
 pytest = "^6.2.4"
 onnx = "^1.9.0"
 onnxruntime = "^1.8.1"

@@ -20,6 +20,7 @@ from .concat import Concat  # noqa: F401
 from .concatfromsequence import ConcatFromSequence  # noqa: F401
 from .constant import Constant  # noqa: F401
 from .constantofshape import ConstantOfShape  # noqa: F401
+from .convtranspose import ConvTranspose  # noqa: F401
 from .cos import Cos  # noqa: F401
 from .cosh import Cosh  # noqa: F401
 from .depthtospace import DepthToSpace  # noqa: F401
@@ -100,6 +101,7 @@ from .scatternd import ScatterND  # noqa: F401
 from .shape import Shape  # noqa: F401
 from .sigmoid import Sigmoid  # noqa: F401
 from .slice import Slice  # noqa: F401
+from .softmax import Softmax  # noqa: F401
 from .split import Split  # noqa: F401
 from .sqrt import Sqrt  # noqa: F401
 from .squeeze import Squeeze  # noqa: F401
