@@ -10,11 +10,9 @@ class BatchNormalization:
         if 14 <= self.version:
             training_mode = kwargs.get("training_mode", 0)
             if training_mode != 0:
-                # Non-zero values for training_mode are not supported
-                raise RunError("BatchNormalization", self.version)
+                raise RunError("BatchNormalization", self.version, "Non-zero values for training_mode are not supported")
 
-        # only opset_versions (>= 9) are supported
-        raise RunError("BatchNormalization", self.version)
+        raise RunError("BatchNormalization", self.version, "opset_version (< 9) is not supported")
 
     def run(self, x, scale, bias, input_mean, input_var):
         """
