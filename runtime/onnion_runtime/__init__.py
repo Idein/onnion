@@ -9,6 +9,7 @@ from .asin import Asin  # noqa: F401
 from .asinh import Asinh  # noqa: F401
 from .atan import Atan  # noqa: F401
 from .atanh import Atanh  # noqa: F401
+from .batchnormalization import BatchNormalization  # noqa: F401
 from .bitshift import BitShift  # noqa: F401
 from .cast import Cast  # noqa: F401
 from .ceil import Ceil  # noqa: F401
