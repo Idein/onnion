@@ -97,6 +97,6 @@ class ConvTranspose:
                     ow_max = min(strides[1] * iw + kernel_shape[1] * dilations[1] - pads[1],
                                  output_shape[1])
                     v = np.sum(x[n, :, ih, iw].reshape(-1, 1, 1, 1) * W, axis=0)
-                    result[n, :, oh_min:oh_max, ow_min:ow_max] += v
+                    result[n, :, oh_min:oh_max:dilations[0], ow_min:ow_max:dilations[1]] += v
 
         return [result]
