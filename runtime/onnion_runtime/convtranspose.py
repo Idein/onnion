@@ -59,7 +59,6 @@ class ConvTranspose:
 
         if self.auto_pad != "NOTSET":
             raise RunError("ConvTranspose", self.version, "support auto_pad=NOTSET only")
-
         # calculate pads and output_shape
         if self.output_shape is not None:
             output_shape = self.output_shape
@@ -85,22 +84,19 @@ class ConvTranspose:
 
         # calculate output
         result = np.zeros([batch, out_ch, *output_shape], dtype=x.dtype)
-
+        for och in range(out_ch):
+            if b is not None:
+                result[n, och, :, :] += b[och]
         for n in range(batch):
-            for och in range(out_ch):
-                if b is not None:
-                    result[n, och, :, :] += b[och]
-                for ih in range(input_shape[0]):
-                    for iw in range(input_shape[1]):
-                        for kh in range(kernel_shape[0]):
-                            for kw in range(kernel_shape[1]):
-                                oh = strides[0] * ih + kh * dilations[0] - pads[0]
-                                ow = strides[1] * iw + kw * dilations[1] - pads[1]
-                                if oh < 0 or ow < 0 or oh >= output_shape[0] or ow >= output_shape[1]:
-                                    continue
-                                v = np.float32(0)
-                                for ich in range(in_ch):
-                                    v += x[n, ich, ih, iw] * W[ich, och, kh, kw]
-                                result[n, och, oh, ow] += v
+            for ih in range(input_shape[0]):
+                for iw in range(input_shape[1]):
+                    oh_min = max(strides[0] * ih - pads[0], 0)
+                    oh_max = min(strides[0] * ih + kernel_shape[0] * dilations[0] - pads[0],
+                                 output_shape[0])
+                    ow_min = max(strides[1] * iw - pads[1], 0)
+                    ow_max = min(strides[1] * iw + kernel_shape[1] * dilations[1] - pads[1],
+                                 output_shape[1])
+                    v = np.sum(x[n, :, ih, iw].reshape(-1, 1, 1, 1) * W, axis=0)
+                    result[n, :, oh_min:oh_max, ow_min:ow_max] += v
 
         return [result]
