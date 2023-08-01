@@ -42,7 +42,6 @@ class ConvTranspose:
         dim = len(x.shape) - 2
         group = self.group
         batch = x.shape[0]
-        in_ch = x.shape[1]
         out_ch = W.shape[1]
         dilations = self.dilations or [1] * dim
         strides = self.strides or [1] * dim
@@ -86,17 +85,15 @@ class ConvTranspose:
         result = np.zeros([batch, out_ch, *output_shape], dtype=x.dtype)
         for och in range(out_ch):
             if b is not None:
-                result[n, och, :, :] += b[och]
+                result[:, och, :, :] += b[och]
         for n in range(batch):
             for ih in range(input_shape[0]):
                 for iw in range(input_shape[1]):
                     oh_min = max(strides[0] * ih - pads[0], 0)
-                    oh_max = min(strides[0] * ih + kernel_shape[0] * dilations[0] - pads[0],
-                                 output_shape[0])
+                    oh_max = min(strides[0] * ih + kernel_shape[0] * dilations[0] - pads[0], output_shape[0])
                     ow_min = max(strides[1] * iw - pads[1], 0)
-                    ow_max = min(strides[1] * iw + kernel_shape[1] * dilations[1] - pads[1],
-                                 output_shape[1])
+                    ow_max = min(strides[1] * iw + kernel_shape[1] * dilations[1] - pads[1], output_shape[1])
                     v = np.sum(x[n, :, ih, iw].reshape(-1, 1, 1, 1) * W, axis=0)
-                    result[n, :, oh_min:oh_max:dilations[0], ow_min:ow_max:dilations[1]] += v
+                    result[n, :, oh_min : oh_max : dilations[0], ow_min : ow_max : dilations[1]] += v
 
         return [result]
