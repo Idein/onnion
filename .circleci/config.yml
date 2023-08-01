@@ -106,7 +106,7 @@ jobs:
       - run:
           name: Test onnion-rt on arm32
           command: |
-            pushd docker
+            pushd /tmp/docker
             docker build -t idein/onnion-arm32-env .
             popd
             docker create -v /work --name src arm32v7/debian:11 /bin/true
