@@ -102,14 +102,17 @@ jobs:
       - run: |
           ls /tmp/runtime/tests
       - setup_remote_docker
-      # - docker-login
+      - docker-login
       - enable-user-mode-emulation
       - run:
           name: Test onnion-rt on arm32
           command: |
-            pushd /tmp/docker
-            docker build -t idein/onnion-arm32-env .
-            popd
+            if [ "${CIRCLE_PR_USERNAME}" == "" ]; then
+              echo "Build idein/onnion-arm32-env due to external PR"
+              pushd /tmp/docker
+              docker build -t idein/onnion-arm32-env .
+              popd
+            fi
             docker create -v /work --name src arm32v7/debian:11 /bin/true
             docker cp /tmp/runtime src:/work
             docker run --rm --volumes-from src -w /work/runtime idein/onnion-arm32-env python3 -m pytest --log-cli-level=INFO -v tests
