@@ -33,7 +33,12 @@ commands:
     steps:
       - run:
           name: Login to docker registry
-          command: docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
+          command: |
+            if [ "${CIRCLE_PR_USERNAME}" == "" ]; then
+              echo ${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin
+            else
+              echo "Skip docker login due to external PR"
+            fi
   enable-user-mode-emulation:
     steps:
       - run:
@@ -83,6 +88,7 @@ jobs:
           root: .
           paths:
             - runtime
+            - docker
 
   test-on-arm32:
     docker:
@@ -101,6 +107,12 @@ jobs:
       - run:
           name: Test onnion-rt on arm32
           command: |
+            if [ "${CIRCLE_PR_USERNAME}" != "" ]; then
+              echo "Build idein/onnion-arm32-env due to external PR"
+              pushd /tmp/docker
+              docker build -t idein/onnion-arm32-env .
+              popd
+            fi
             docker create -v /work --name src arm32v7/debian:11 /bin/true
             docker cp /tmp/runtime src:/work
             docker run --rm --volumes-from src -w /work/runtime idein/onnion-arm32-env python3 -m pytest --log-cli-level=INFO -v tests
@@ -165,8 +177,12 @@ jobs:
             - run:
                 name: Push image
                 command: |
-                  docker push idein/onnion:latest
-                  docker push idein/onnion:$(date +%Y%m%d)
+                  if [ "${CIRCLE_PR_USERNAME}" == "" ]; then
+                    docker push idein/onnion:latest
+                    docker push idein/onnion:$(date +%Y%m%d)
+                  else
+                    echo "Skip docker push due to external PR"
+                  fi
       - unless:
           condition: << parameters.release >>
           steps:
@@ -178,8 +194,12 @@ jobs:
             - run:
                 name: Push image
                 command: |
-                  docker push idein/onnion:latest
-                  docker push idein/onnion:build-${CIRCLE_BUILD_NUM}
+                  if [ "${CIRCLE_PR_USERNAME}" == "" ]; then
+                    docker push idein/onnion:latest
+                    docker push idein/onnion:build-${CIRCLE_BUILD_NUM}
+                  else
+                    echo "Skip docker push due to external PR"
+                  fi
 
   validate-version-with-tag:
     parameters:
