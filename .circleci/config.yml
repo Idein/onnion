@@ -107,7 +107,7 @@ jobs:
       - run:
           name: Test onnion-rt on arm32
           command: |
-            if [ "${CIRCLE_PR_USERNAME}" == "" ]; then
+            if [ "${CIRCLE_PR_USERNAME}" != "" ]; then
               echo "Build idein/onnion-arm32-env due to external PR"
               pushd /tmp/docker
               docker build -t idein/onnion-arm32-env .
