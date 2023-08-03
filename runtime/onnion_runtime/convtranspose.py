@@ -42,7 +42,6 @@ class ConvTranspose:
         dim = len(x.shape) - 2
         group = self.group
         batch = x.shape[0]
-        in_ch = x.shape[1]
         out_ch = W.shape[1]
         dilations = self.dilations or [1] * dim
         strides = self.strides or [1] * dim
@@ -59,7 +58,6 @@ class ConvTranspose:
 
         if self.auto_pad != "NOTSET":
             raise RunError("ConvTranspose", self.version, "support auto_pad=NOTSET only")
-
         # calculate pads and output_shape
         if self.output_shape is not None:
             output_shape = self.output_shape
@@ -82,25 +80,41 @@ class ConvTranspose:
                 - pads[i + dim]
                 for i in range(dim)
             ]
-
         # calculate output
         result = np.zeros([batch, out_ch, *output_shape], dtype=x.dtype)
+        for och in range(out_ch):
+            if b is not None:
+                result[:, och, :, :] += b[och]
 
         for n in range(batch):
-            for och in range(out_ch):
-                if b is not None:
-                    result[n, och, :, :] += b[och]
-                for ih in range(input_shape[0]):
-                    for iw in range(input_shape[1]):
-                        for kh in range(kernel_shape[0]):
-                            for kw in range(kernel_shape[1]):
-                                oh = strides[0] * ih + kh * dilations[0] - pads[0]
-                                ow = strides[1] * iw + kw * dilations[1] - pads[1]
-                                if oh < 0 or ow < 0 or oh >= output_shape[0] or ow >= output_shape[1]:
-                                    continue
-                                v = np.float32(0)
-                                for ich in range(in_ch):
-                                    v += x[n, ich, ih, iw] * W[ich, och, kh, kw]
-                                result[n, och, oh, ow] += v
+            for ih in range(input_shape[0]):
+                for iw in range(input_shape[1]):
+                    wgt_h_min = 0
+                    wgt_w_min = 0
+                    wgt_w_max = kernel_shape[1]
+                    wgt_h_max = kernel_shape[0]
+
+                    oh_min = strides[0] * ih - pads[0]
+                    oh_max = strides[0] * ih + kernel_shape[0] * dilations[0] - pads[0]
+                    if oh_min < 0:
+                        wgt_h_min = oh_min * -1
+                        oh_min = 0
+                    if oh_max > output_shape[0]:
+                        wgt_h_max = kernel_shape[0] - int((oh_max - output_shape[0]) / dilations[0])
+                        oh_max = output_shape[0]
+
+                    ow_min = strides[1] * iw - pads[1]
+                    ow_max = strides[1] * iw + kernel_shape[1] * dilations[1] - pads[1]
+                    if ow_max > output_shape[1]:
+                        wgt_w_max = kernel_shape[1] - int((ow_max - output_shape[1]) / dilations[1])
+                        ow_max = output_shape[1]
+
+                    if ow_min < 0:
+                        wgt_w_min = ow_min * -1
+                        ow_min = 0
+
+                    v = np.sum(x[n, :, ih, iw].reshape(-1, 1, 1, 1) * W[:, :, wgt_h_min:wgt_h_max, wgt_w_min:wgt_w_max], axis=0)
+
+                    result[n, :, oh_min : oh_max : dilations[0], ow_min : ow_max : dilations[1]] += v
 
         return [result]
