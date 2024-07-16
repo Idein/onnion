@@ -12,7 +12,7 @@ defaults:
 
 jobs:
   call-nix-flake-updater:
-    uses: ishiy1993/nix-flake-updater/.github/workflows/nix-flake-updater.yml@v0
+    uses: ishiy1993/nix-flake-updater/.github/workflows/nix-flake-updater.yml@v1
     with:
       base_branch: master
       timezone: JST-9
